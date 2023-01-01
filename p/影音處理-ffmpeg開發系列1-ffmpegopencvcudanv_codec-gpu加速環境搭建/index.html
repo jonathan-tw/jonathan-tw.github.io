@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='OS:Ubuntu: 16.04 / 18.04 OpencCV: 4.2 Cuda: 8.0 / 9.0 Nivida Driver: 418.56 (GTX 1050ti) / 435 (GTX 1060) CPU: i3-8300 3.70Ghz ffmpeg: 4.2 / 4.2.4 nv_codec_headers: 8.2 / 9.0 Install Nvidia Driver list available Nvidia Driver 1 ubuntu-drivers devices add repoitory 1 2 sudo add-apt-repository ppa:graphics-drivers/ppa sudo apt update instll Nvidia Driver 1 sudo apt install nvidia-xxx Install CUDA Check CUDA and Nvidia driver compatibility https://docs.nvidia.com/deploy/cuda-compatibility/index.html Download Cuda runfile'>
+<title>(影音處理) FFmpeg開發系列1 - FFmpeg、OpenCV、CUDA、NV_Codec GPU加速環境搭建</title>
+
+<link rel='canonical' href='https://jonathan-tw.github.io/p/%E5%BD%B1%E9%9F%B3%E8%99%95%E7%90%86-ffmpeg%E9%96%8B%E7%99%BC%E7%B3%BB%E5%88%971-ffmpegopencvcudanv_codec-gpu%E5%8A%A0%E9%80%9F%E7%92%B0%E5%A2%83%E6%90%AD%E5%BB%BA/'>
+
+<link rel="stylesheet" href="/scss/style.min.bc83d04d99c884875e186b5e3d66bac93f224d7c0baa8c841be81e350805a56c.css"><meta property='og:title' content='(影音處理) FFmpeg開發系列1 - FFmpeg、OpenCV、CUDA、NV_Codec GPU加速環境搭建'>
+<meta property='og:description' content='OS:Ubuntu: 16.04 / 18.04 OpencCV: 4.2 Cuda: 8.0 / 9.0 Nivida Driver: 418.56 (GTX 1050ti) / 435 (GTX 1060) CPU: i3-8300 3.70Ghz ffmpeg: 4.2 / 4.2.4 nv_codec_headers: 8.2 / 9.0 Install Nvidia Driver list available Nvidia Driver 1 ubuntu-drivers devices add repoitory 1 2 sudo add-apt-repository ppa:graphics-drivers/ppa sudo apt update instll Nvidia Driver 1 sudo apt install nvidia-xxx Install CUDA Check CUDA and Nvidia driver compatibility https://docs.nvidia.com/deploy/cuda-compatibility/index.html Download Cuda runfile'>
+<meta property='og:url' content='https://jonathan-tw.github.io/p/%E5%BD%B1%E9%9F%B3%E8%99%95%E7%90%86-ffmpeg%E9%96%8B%E7%99%BC%E7%B3%BB%E5%88%971-ffmpegopencvcudanv_codec-gpu%E5%8A%A0%E9%80%9F%E7%92%B0%E5%A2%83%E6%90%AD%E5%BB%BA/'>
+<meta property='og:site_name' content='Jonathan&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='og:image' content='https://i.imgur.com/Z46KUCY.png' />
+<meta name="twitter:title" content="(影音處理) FFmpeg開發系列1 - FFmpeg、OpenCV、CUDA、NV_Codec GPU加速環境搭建">
+<meta name="twitter:description" content="OS:Ubuntu: 16.04 / 18.04 OpencCV: 4.2 Cuda: 8.0 / 9.0 Nivida Driver: 418.56 (GTX 1050ti) / 435 (GTX 1060) CPU: i3-8300 3.70Ghz ffmpeg: 4.2 / 4.2.4 nv_codec_headers: 8.2 / 9.0 Install Nvidia Driver list available Nvidia Driver 1 ubuntu-drivers devices add repoitory 1 2 sudo add-apt-repository ppa:graphics-drivers/ppa sudo apt update instll Nvidia Driver 1 sudo apt install nvidia-xxx Install CUDA Check CUDA and Nvidia driver compatibility https://docs.nvidia.com/deploy/cuda-compatibility/index.html Download Cuda runfile"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://i.imgur.com/Z46KUCY.png' /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/darcula.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Jonathan&#39;s Blog</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#install-nvidia-driver">Install Nvidia Driver</a></li>
+    <li><a href="#install-cuda">Install CUDA</a></li>
+    <li><a href="#install-nv_codec-optional-for-gpu-">Install NV_codec (optional for gpu )</a></li>
+    <li><a href="#install-ffmpeg-424">Install FFmpeg 4.2.4</a>
+      <ol>
+        <li><a href="#test-ffmpeg">Test ffmpeg</a></li>
+      </ol>
+    </li>
+    <li><a href="#install-opencv">Install Opencv</a>
+      <ol>
+        <li><a href="#with-cuda-and-opencv_world">with cuda and opencv_world</a></li>
+        <li><a href="#without-cuda-simple">without cuda (Simple)</a></li>
+      </ol>
+    </li>
+    <li><a href="#compile-cuda--ffmpeg-with-opencv-開發指令">Compile cuda &amp;&amp; ffmpeg with Opencv 開發指令</a>
+      <ol>
+        <li><a href="#two-so-files-need-to-be-at-system-location">Two .so files need to be at system location</a></li>
+        <li><a href="#cuda-compiles-to-shared-file-so-nv12tobgr">CUDA compiles to shared file (.so): (NV12toBGR)</a></li>
+        <li><a href="#ffmpeg-gpu-server-compiles-to-shared-file-so">FFmpeg gpu server compiles to shared file (.so)</a></li>
+        <li><a href="#ffmpeg-gpu-client-compiles">FFmpeg gpu client compiles</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E5%BD%B1%E9%9F%B3%E8%99%95%E7%90%86-ffmpeg%E9%96%8B%E7%99%BC%E7%B3%BB%E5%88%971-ffmpegopencvcudanv_codec-gpu%E5%8A%A0%E9%80%9F%E7%92%B0%E5%A2%83%E6%90%AD%E5%BB%BA/">
+                
+                    <img src="https://i.imgur.com/Z46KUCY.png" loading="lazy" alt="Featured image of post (影音處理) FFmpeg開發系列1 - FFmpeg、OpenCV、CUDA、NV_Codec GPU加速環境搭建" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/expertise_in_cs/" >
+                expertise_in_cs
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E5%BD%B1%E9%9F%B3%E8%99%95%E7%90%86-ffmpeg%E9%96%8B%E7%99%BC%E7%B3%BB%E5%88%971-ffmpegopencvcudanv_codec-gpu%E5%8A%A0%E9%80%9F%E7%92%B0%E5%A2%83%E6%90%AD%E5%BB%BA/">(影音處理) FFmpeg開發系列1 - FFmpeg、OpenCV、CUDA、NV_Codec GPU加速環境搭建</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <!-- raw HTML omitted -->
+<blockquote>
+<p>OS:Ubuntu: 16.04 / 18.04</p>
+<p>OpencCV: 4.2</p>
+<p>Cuda: 8.0 / 9.0</p>
+<p>Nivida Driver: 418.56 (GTX 1050ti) / 435 (GTX 1060)</p>
+<p>CPU: i3-8300 3.70Ghz</p>
+<p>ffmpeg: 4.2 / 4.2.4</p>
+<p>nv_codec_headers: 8.2 / 9.0</p>
+</blockquote>
+<h2 id="install-nvidia-driver">Install Nvidia Driver</h2>
+<ol>
+<li>
+<p>list available Nvidia Driver</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ubuntu-drivers devices
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>add repoitory</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo add-apt-repository ppa:graphics-drivers/ppa
+</span></span><span class="line"><span class="cl">sudo apt update
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>instll Nvidia Driver</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt install nvidia-xxx
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="install-cuda">Install CUDA</h2>
+<ol>
+<li>
+<p>Check CUDA and Nvidia driver compatibility
+<a class="link" href="https://docs.nvidia.com/deploy/cuda-compatibility/index.html"  target="_blank" rel="noopener"
+    >https://docs.nvidia.com/deploy/cuda-compatibility/index.html</a></p>
+</li>
+<li>
+<p>Download Cuda runfile which determines by your os
+<a class="link" href="https://developer.nvidia.com/cuda-downloads"  target="_blank" rel="noopener"
+    >https://developer.nvidia.com/cuda-downloads</a></p>
+<blockquote>
+<p>please choose not to install nvidia graphics driver, or the driver will be updated**</p>
+</blockquote>
+</li>
+<li>
+<p>install cuda (ex: cuda 8.0 for ubuntnu 16.04 )</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo sh cuda_8.0.61_375.26_linux.run
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Add environment variables to ~/.bashrc</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo nano ~/.bashrc
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/usr/local/cuda/bin:<span class="nv">$PATH</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/cuda/lib64:<span class="nv">$LD_LIBRARY_PATH</span> 
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> ~/.bashrc
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="install-nv_codec-optional-for-gpu-">Install NV_codec (optional for gpu )</h2>
+<ol>
+<li>
+<p>download nv_codec_headers 8.2: <a class="link" href="https://github.com/FFmpeg/nv-codec-headers/tree/sdk/8.2"  target="_blank" rel="noopener"
+    >https://github.com/FFmpeg/nv-codec-headers/tree/sdk/8.2</a></p>
+</li>
+<li>
+<p>install nv_codec_headers 8.2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo make install
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>nv_codec_headers 9.0需要cuda 9.0以上</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h2 id="install-ffmpeg-424">Install FFmpeg 4.2.4</h2>
+<ol>
+<li>
+<p>install necessary tool</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt-get update -qq <span class="o">&amp;&amp;</span> sudo apt-get -y install <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  autoconf <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  automake <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  build-essential <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  cmake <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  git-core <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  libass-dev <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  libfreetype6-dev <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  libgnutls28-dev <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  libsdl2-dev <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  libtool <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  libva-dev <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  libvdpau-dev <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  libvorbis-dev <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  libxcb1-dev <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  libxcb-shm0-dev <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  libxcb-xfixes0-dev <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  pkg-config <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  texinfo <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  wget <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  yasm <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  zlib1g-dev
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>install libx264:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git clone https://code.videolan.org/videolan/x264.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> x264
+</span></span><span class="line"><span class="cl">sudo ./configure --enable-shared --disable-asm
+</span></span><span class="line"><span class="cl">sudo make <span class="o">&amp;&amp;</span> sudo make install
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>installl ffplay</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt-get install libsdl2-dev
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>install libfdk_aac (optional)</p>
+<p><a class="link" href="https://sourceforge.net/projects/opencore-amr/files/fdk-aac/"  target="_blank" rel="noopener"
+    >https://sourceforge.net/projects/opencore-amr/files/fdk-aac/</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">./configure
+</span></span><span class="line"><span class="cl">make <span class="o">&amp;&amp;</span> sudo make install
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">vi /etc/ld/so.conf.d/aac.conf
+</span></span><span class="line"><span class="cl">/usr/local/lib
+</span></span><span class="line"><span class="cl">sudo ldconfig
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>install mp3lame (optional)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt-get install yasm libmp3lame-dev
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>download ffmpeg:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git clone https://git.ffmpeg.org/ffmpeg.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>configure command (if you need cuvid)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo ./configure --enable-libmp3lame --enable-libfdk_aac --enable-libx264 --enable-gpl --enable-cuda --enable-cuvid --enable-nvenc --enable-nonfree --enable-pic --enable-rpath --enable-shared --extra-cflags<span class="o">=</span>-I/usr/local/cuda/include --extra-ldflags<span class="o">=</span>-L/usr/local/cuda/lib64 --enable-libnpp --enable-ffplay
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>configure command (if you don&rsquo;t need cuvid and sound but want cuda )</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo ./configure --enable-libx264 --enable-gpl --enable-cuda --enable-nvenc --enable-nonfree --enable-rpath --enable-pic --enable-shared --extra-cflags<span class="o">=</span>-I/usr/local/cuda/include --extra-ldflags<span class="o">=</span>-L/usr/local/cuda/lib64 --enable-ffplay
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>compile ffmpeg</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo make <span class="o">&amp;&amp;</span> sudo make install
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>add to envirnment</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo vi ~/.bashrc 
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/usr/local/bin:<span class="nv">$PATH</span>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> ~/.bashrc
+</span></span><span class="line"><span class="cl">sudo nano /etc/ld.so.conf
+</span></span><span class="line"><span class="cl"><span class="c1"># dertermine on your ffmpeg install location</span>
+</span></span><span class="line"><span class="cl">/usr/local/ffmpeg/lib  
+</span></span><span class="line"><span class="cl">sudo ldconfig
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>for more build options <a class="link" href="https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu"  target="_blank" rel="noopener"
+    >https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu</a></p>
+</li>
+</ol>
+<h3 id="test-ffmpeg">Test ffmpeg</h3>
+<p>Hardware acceleration methods:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ffmpeg -hwaccels
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>cpu:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">time</span> ffmpeg -rtsp_transport tcp -i rtsp://admin:ai123456@192.168.0.111 -r <span class="m">30</span> -t <span class="m">100</span> -c:v h264 -b:v 2048k -vf <span class="nv">scale</span><span class="o">=</span>1280:-1 -y -c:v libx264 tcp_cpu_output.mp4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>gpu:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">time</span> ffmpeg -rtsp_transport tcp -hwaccel cuvid -c:v h264_cuvid -i rtsp://admin:ai123456@192.168.0.111 -r <span class="m">30</span> -t <span class="m">100</span> -b:v 2048k -vf <span class="nv">scale_npp</span><span class="o">=</span>1280:-1 -y -c:v h264_nvenc tcp_gpu_output.mp4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>默認下ffmpeg抓rtsp使用UDP,這會lose大量packet，使用TCP避免。</p>
+</blockquote>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Video.mp4</th>
+<th>CPU</th>
+<th>GPU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Real Time</td>
+<td>16s</td>
+<td>0.5s</td>
+</tr>
+<tr>
+<td>Bit rate</td>
+<td>1497kbps</td>
+<td>1479kbps</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">rtsp://admin:ai123456@192.168.0.111 (30幀)</th>
+<th>CPU</th>
+<th>GPU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Real Time</td>
+<td>1m49s</td>
+<td>1m41s</td>
+</tr>
+<tr>
+<td style="text-align:left">Bit rate</td>
+<td>1911kbps</td>
+<td>2067kbps</td>
+</tr>
+</tbody>
+</table></div>
+<hr>
+<h2 id="install-opencv">Install Opencv</h2>
+<ol>
+<li>
+<p>install required and optional package</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo add-apt-repository -y <span class="s2">&#34;deb http://security.ubuntu.com/ubuntu xenial-security main&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt-get install -y libjpeg8-dev libjasper-dev libpng12-dev
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt install build-essential cmake git pkg-config libgtk-3-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt install libjpeg-dev libpng-dev libtiff-dev gfortran openexr libatlas-base-dev python3-dev python3-numpy libtbb2 libtbb-dev libdc1394-22-dev 
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>download opencv 4.2 and extra library</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir opencv_base
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> opencv_base
+</span></span><span class="line"><span class="cl">git clone https://github.com/opencv/opencv.git --branch<span class="o">=</span>4.2.0
+</span></span><span class="line"><span class="cl">git clone https://github.com/opencv/opencv_contrib.git --branch<span class="o">=</span>4.2.0	 
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> opencv_base/opencv/
+</span></span><span class="line"><span class="cl">mkdir build
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> build
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="with-cuda-and-opencv_world">with cuda and opencv_world</h3>
+<p>check your cuda_arch_bin:https://developer.nvidia.com/cuda-gpus</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Release <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	 -D <span class="nv">OPENCV_GENERATE_PKGCONFIG</span><span class="o">=</span>YES <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	 -D <span class="nv">CMAKE_INSTALL_PREFIX</span><span class="o">=</span>/usr/local <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	 -D <span class="nv">BUILD_JAVA</span><span class="o">=</span>YES <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	 -D <span class="nv">WITH_CUDA</span><span class="o">=</span>ON <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	 -D <span class="nv">BUILD_opencv_world</span><span class="o">=</span>ON <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	 -D <span class="nv">WITH_FFMPEG</span><span class="o">=</span>ON <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	 -D <span class="nv">OPENCV_GENERATE_PKGCONFIG</span><span class="o">=</span>ON <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	 -D <span class="nv">OPENCV_EXTRA_MODULES_PATH</span><span class="o">=</span>/usr/local/opencv_base/opencv_contrib/modules <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	 -D <span class="nv">BUILD_opencv_python3</span><span class="o">=</span>yes <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	 -D <span class="nv">CUDA_ARCH_BIN</span><span class="o">=</span>6.1 ..
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="without-cuda-simple">without cuda (Simple)</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>RELEASE <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-D <span class="nv">OPENCV_GENERATE_PKGCONFIG</span><span class="o">=</span>YES <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -D <span class="nv">CMAKE_INSTALL_PREFIX</span><span class="o">=</span>/usr/local <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -D <span class="nv">BUILD_JAVA</span><span class="o">=</span>YES <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-D <span class="nv">BUILD_opencv_world</span><span class="o">=</span>ON <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-D <span class="nv">WITH_FFMPEG</span><span class="o">=</span>ON <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -D <span class="nv">INSTALL_C_EXAMPLES</span><span class="o">=</span>ON <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -D <span class="nv">INSTALL_PYTHON_EXAMPLES</span><span class="o">=</span>ON <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -D <span class="nv">OPENCV_GENERATE_PKGCONFIG</span><span class="o">=</span>ON <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -D <span class="nv">OPENCV_EXTRA_MODULES_PATH</span><span class="o">=</span>/usr/local/opencv_base/opencv_contrib/modules <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -D <span class="nv">BUILD_EXAMPLES</span><span class="o">=</span>ON ..
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="compile-cuda--ffmpeg-with-opencv-開發指令">Compile cuda &amp;&amp; ffmpeg with Opencv 開發指令</h2>
+<p>include及lib都為相對路徑 (if you want to pack code )</p>
+<h3 id="two-so-files-need-to-be-at-system-location">Two .so files need to be at system location</h3>
+<p>libx264.so</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo cp lib/libx264.so.160 /lib/x86_64-linux-gnu/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>libswresample.so</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo cp lib/libswresample.so.3 /usr/local/lib/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="cuda-compiles-to-shared-file-so-nv12tobgr">CUDA compiles to shared file (.so): (NV12toBGR)</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nvcc -shared cuda_convert.cu -o ../lib/libcuda_convert.so --compiler-options <span class="s1">&#39;-fPIC&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ffmpeg-gpu-server-compiles-to-shared-file-so">FFmpeg gpu server compiles to shared file (.so)</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">g++ -shared -fPIC ffmpeg_gpu_server.cpp -o ../lib/libffmpeg_gpu_server.so -I../include/ -L ../lib -Wl,--rpath<span class="o">=</span><span class="s1">&#39;../lib&#39;</span> -lavformat -lavcodec -lavutil -lswscale -lswresample -lcuda_convert -lx264
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ffmpeg-gpu-client-compiles">FFmpeg gpu client compiles</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">g++ ffmpeg_gpu_client.cpp -o ../bin/ffmpeg_gpu_client -I../include/ -Wl,--rpath<span class="o">=</span><span class="s1">&#39;../lib&#39;</span> -L -lffmpeg_gpu_server -lopencv_world -ldl -lm -lz -lX11 -std<span class="o">=</span>gnu++11
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 Jonathan&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
