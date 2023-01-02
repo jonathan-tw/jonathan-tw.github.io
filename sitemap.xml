@@ -2,16 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://jonathan-tw.github.io/p/%E5%BD%B1%E9%9F%B3%E8%99%95%E7%90%86-ffmpeg%E9%96%8B%E7%99%BC%E7%B3%BB%E5%88%971-ffmpegopencvcudanv_codec-gpu%E5%8A%A0%E9%80%9F%E7%92%B0%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
+    <loc>https://jonahan-tw.github.io/posts/ffmpeg_note_1/</loc>
   </url><url>
-    <loc>https://jonathan-tw.github.io/categories/</loc>
+    <loc>https://jonahan-tw.github.io/archives.fr/</loc>
   </url><url>
-    <loc>https://jonathan-tw.github.io/categories/expertise_in_cs/</loc>
+    <loc>https://jonahan-tw.github.io/archives/</loc>
   </url><url>
-    <loc>https://jonathan-tw.github.io/</loc>
+    <loc>https://jonahan-tw.github.io/categories/</loc>
   </url><url>
-    <loc>https://jonathan-tw.github.io/post/</loc>
+    <loc>https://jonahan-tw.github.io/categories/expertise_in_cs/</loc>
   </url><url>
-    <loc>https://jonathan-tw.github.io/tags/</loc>
+    <loc>https://jonahan-tw.github.io/</loc>
+  </url><url>
+    <loc>https://jonahan-tw.github.io/posts/</loc>
+  </url><url>
+    <loc>https://jonahan-tw.github.io/search/</loc>
+  </url><url>
+    <loc>https://jonahan-tw.github.io/search.fr/</loc>
+  </url><url>
+    <loc>https://jonahan-tw.github.io/series/</loc>
+  </url><url>
+    <loc>https://jonahan-tw.github.io/tags/</loc>
   </url>
 </urlset>
