@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>🧩 标签 on Jonathan&#39;s Blog</title>
+    <title>🧩 Tags on Jonathan&#39;s Blog</title>
     <link>https://jonathan-tw.github.io/tags/</link>
-    <description>Recent content in 🧩 标签 on Jonathan&#39;s Blog</description>
+    <description>Recent content in 🧩 Tags on Jonathan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 05 May 2022 00:18:23 +0800</lastBuildDate><atom:link href="https://jonathan-tw.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-tw</language>
+    <lastBuildDate>Mon, 02 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jonathan-tw.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>blog</title>
-      <link>https://jonathan-tw.github.io/tags/blog/</link>
-      <pubDate>Thu, 05 May 2022 00:18:23 +0800</pubDate>
+      <title>影音處理</title>
+      <link>https://jonathan-tw.github.io/tags/%E5%BD%B1%E9%9F%B3%E8%99%95%E7%90%86/</link>
+      <pubDate>Mon, 02 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://jonathan-tw.github.io/tags/blog/</guid>
+      <guid>https://jonathan-tw.github.io/tags/%E5%BD%B1%E9%9F%B3%E8%99%95%E7%90%86/</guid>
       <description></description>
     </item>
     
