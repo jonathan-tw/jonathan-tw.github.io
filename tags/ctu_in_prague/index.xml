@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>CTU_in_Prague on Jonathan&#39;s Blog</title>
+    <link>https://jonathan-tw.github.io/tags/ctu_in_prague/</link>
+    <description>Recent content in CTU_in_Prague on Jonathan&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Tue, 17 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jonathan-tw.github.io/tags/ctu_in_prague/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(課程筆記)(CTU in Prague) Middleware architectures 2 HW</title>
+      <link>https://jonathan-tw.github.io/posts/middleware-architectures-2-hw/</link>
+      <pubDate>Tue, 17 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jonathan-tw.github.io/posts/middleware-architectures-2-hw/</guid>
+      <description>AJAX / XHR states / CORS / Data access Tasks Create a simple HTML page with an info text field and a single button Implement a JavaScript function which is triggered when the button is clicked The function should fetch relatively large file (e.g. 100-200MB) in the text field show following states: loading - when the open method was called loaded - when the send method was called downloading - while the data is being downloaded finished downloading - when the data has beeen downloaded you can use Promise, async/await Description AJAX overview: Asynchronous JavaScript and XML technique for creating better, faster, and more interactive web applications relies on XML, JSON, HTML, CSS and JavaScript AJAX is not a programming language Running this demo by using the jquery module to achieve the ajax request. Following the xhr state in https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState.</description>
+    </item>
+    
+  </channel>
+</rss>
