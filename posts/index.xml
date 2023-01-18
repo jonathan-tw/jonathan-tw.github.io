@@ -6,7 +6,16 @@
     <description>Recent content in 📚 Posts on Jonathan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 17 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jonathan-tw.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jonathan-tw.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(課程筆記)(CTU in Prague) Middleware architectures 2 Review</title>
+      <link>https://jonathan-tw.github.io/posts/middleware-architectures-2-review/</link>
+      <pubDate>Wed, 18 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jonathan-tw.github.io/posts/middleware-architectures-2-review/</guid>
+      <description>Lecture 2 - Asynchronous I/O Programming Models Concurrency (Asynchronous I/O = cooperative multitasking) Multiple tasks have the ability to run in an overlapping manner Concurrency does not imply parallelism! Multiprocessing CPU-bounded tasks Multithreading I/O bound tasks It uses preemtive multitasking Promise object: an async object that be returned by the async function. An object representing completion or failure of an asynchronous operation. Await function: makes program to wait until the promise is resolved or rejected can only be usded inside async function Lecture 3 - Cloud Architectures Cloud Computing Concepts On-demand and self-service (當需要資源時才被提供,自動化) Resources are provisioned as they are requested and when they are required ‒ No human interaction, automatic No human interaction, automatic Board network access (資源可被網路</description>
+    </item>
+    
     <item>
       <title>(課程筆記)(CTU in Prague) Middleware architectures 2 HW</title>
       <link>https://jonathan-tw.github.io/posts/middleware-architectures-2-hw/</link>
