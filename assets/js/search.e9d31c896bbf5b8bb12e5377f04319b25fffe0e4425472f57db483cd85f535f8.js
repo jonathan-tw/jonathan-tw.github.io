@@ -599,10 +599,10 @@ e = this, t = function () {
 }, "object" == typeof exports && "undefined" != typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define(t) : (e = "undefined" != typeof globalThis ? globalThis : e || self).Fuse = t();
 ;
 /*
-  PaperMod v6
+  PaperMod v7
   License: MIT https://github.com/adityatelange/hugo-PaperMod/blob/master/LICENSE
   Copyright (c) 2020 nanxiaobei and adityatelange
-  Copyright (c) 2021-2022 adityatelange
+  Copyright (c) 2021-2023 adityatelange
 */
 
 ;
