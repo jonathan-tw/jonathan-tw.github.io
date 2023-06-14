@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>interview on Jonathan&#39;s Blog</title>
+    <link>https://jonathan-tw.github.io/tags/interview/</link>
+    <description>Recent content in interview on Jonathan&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Tue, 13 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jonathan-tw.github.io/tags/interview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2023 軟韌新鮮人 面試時程</title>
+      <link>https://jonathan-tw.github.io/posts/2023-%E8%BB%9F%E9%9F%8C%E6%96%B0%E9%AE%AE%E4%BA%BA-%E9%9D%A2%E8%A9%A6%E6%99%82%E7%A8%8B/</link>
+      <pubDate>Tue, 13 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jonathan-tw.github.io/posts/2023-%E8%BB%9F%E9%9F%8C%E6%96%B0%E9%AE%AE%E4%BA%BA-%E9%9D%A2%E8%A9%A6%E6%99%82%E7%A8%8B/</guid>
+      <description>Ref 代碼隨想錄 TSMC &amp;amp; IC Design House(M,R,P)考古 Leetcode Blind 75 CodeTop Leetcode C++ Solutions Behavior questions 為什麼想來我們公司？ 你在xx有什麼特別的貢獻？ (xx = 實習公司) 在你過去工作經驗或求學過程中，你認為最大的困難/挑戰是?為什麼？ 在你過去工作經驗或求學過程中，你認為最大的成就/果是?為什麼？ 你人生遇到最挫折的事情？你怎</description>
+    </item>
+    
+  </channel>
+</rss>
