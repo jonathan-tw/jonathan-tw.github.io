@@ -2,16 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://jonathan-tw.github.io/posts/2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques/</loc>
+    <lastmod>2023-06-14T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://jonathan-tw.github.io/posts/</loc>
     <lastmod>2023-06-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jonathan-tw.github.io/posts/2023-%E8%BB%9F%E9%9F%8C%E6%96%B0%E9%AE%AE%E4%BA%BA-%E9%9D%A2%E8%A9%A6%E6%99%82%E7%A8%8B/</loc>
     <lastmod>2023-06-14T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://jonathan-tw.github.io/posts/c_c&#43;&#43;-%E9%9D%A2%E8%A9%A6%E7%A7%98%E7%AC%88/</loc>
+    <lastmod>2023-06-14T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://jonathan-tw.github.io/tags/interview/</loc>
     <lastmod>2023-06-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jonathan-tw.github.io/</loc>
+    <lastmod>2023-06-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jonathan-tw.github.io/tags/paper/</loc>
+    <lastmod>2023-06-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jonathan-tw.github.io/tags/quic/</loc>
     <lastmod>2023-06-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jonathan-tw.github.io/tags/</loc>
@@ -44,6 +56,8 @@
     <loc>https://jonathan-tw.github.io/archives/</loc>
   </url><url>
     <loc>https://jonathan-tw.github.io/search/</loc>
+  </url><url>
+    <loc>https://jonathan-tw.github.io/tags/c/c&#43;&#43;/</loc>
   </url><url>
     <loc>https://jonathan-tw.github.io/series/</loc>
   </url>

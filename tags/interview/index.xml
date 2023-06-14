@@ -16,5 +16,14 @@
       <description>Ref 代碼隨想錄 TSMC &amp;amp; IC Design House(M,R,P)考古 Leetcode Blind 75 CodeTop Leetcode C++ Solutions Behavior questions 為什麼想來我們公司？ 你在xx有什麼特別的貢獻？ (xx = 實習公司) 在你過去工作經驗或求學過程中，你認為最大的困難/挑戰是?為什麼？ 在你過去工作經驗或求學過程中，你認為最大的成就/果是?為什麼？ 你人生遇到最挫折的事情？你怎</description>
     </item>
     
+    <item>
+      <title>C/C&#43;&#43; 面試題</title>
+      <link>https://jonathan-tw.github.io/posts/c_c&#43;&#43;-%E9%9D%A2%E8%A9%A6%E7%A7%98%E7%AC%88/</link>
+      <pubDate>Tue, 13 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jonathan-tw.github.io/posts/c_c&#43;&#43;-%E9%9D%A2%E8%A9%A6%E7%A7%98%E7%AC%88/</guid>
+      <description>CH1 - 基礎 1.1 1 2 int x, y z; y = z = 4 // y = 4 and z= 4 1.2 &amp;amp; 運算 =&amp;gt; 做二進位and運算 | 運算 =&amp;gt; 做二進位or運算 &amp;amp;&amp;amp; 和 || 皆為判斷式 =&amp;gt; 回傳1或者是0 1.3 1 x = (y == z) ? 4 : 5; y =4, z = 2, (問號前面的判斷式) false, x取後者, x = 5 if (true) ? x = 4 if (false) ? x = 5 1.4 1 ::value = 2; 在C中無法編譯通過，C++可。(改變全局變數值</description>
+    </item>
+    
   </channel>
 </rss>
