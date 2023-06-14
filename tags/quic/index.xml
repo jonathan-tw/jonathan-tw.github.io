@@ -8,6 +8,15 @@
     <language>zh-tw</language>
     <lastBuildDate>Tue, 13 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jonathan-tw.github.io/tags/quic/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>(2017 NOSSDAV Paper) Not so QUIC A Performance Study of DASH over QUIC</title>
+      <link>https://jonathan-tw.github.io/posts/2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic/</link>
+      <pubDate>Tue, 13 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jonathan-tw.github.io/posts/2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic/</guid>
+      <description>Summary QUIC不及TCP在DASH的表現，由於大多數ABR algorighm都經過優化與TCP配合使用，因此沒有充分利用QUIC提供的功能。 Problem statement What is the impact of QUIC on QoE? How should adaptive bitrate streaming be built to leverage the benefits provided by QUIC? Research objectives A Performance Study and future work Methods we studied QoE performance of different DASH quality adaptation algorithms that are either solely based on the playout buffer filling, or on the video segment download rate, or on both. DASH quality adaptation algorithms that are mainly categorized as</description>
+    </item>
+    
+    <item>
       <title>(2020 IEEE Paper) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques?</title>
       <link>https://jonathan-tw.github.io/posts/2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques/</link>
       <pubDate>Tue, 13 Jun 2023 00:00:00 +0000</pubDate>

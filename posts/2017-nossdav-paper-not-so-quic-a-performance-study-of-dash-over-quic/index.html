@@ -5,12 +5,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>(2020 IEEE Paper) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques? | Jonathan&#39;s Blog</title>
+<title>(2017 NOSSDAV Paper) Not so QUIC A Performance Study of DASH over QUIC | Jonathan&#39;s Blog</title>
 <meta name="keywords" content="">
-<meta name="description" content="Summary 在QUIC中，速度快的video stream被比較慢的audio stream給queue住(sharing a single UDP socket buffer)，造成audio request response latency拉長。其上層的DASH計算throughput不考慮response latency，造成實際的throughput跟">
+<meta name="description" content="Summary QUIC不及TCP在DASH的表現，由於大多數ABR algorighm都經過優化與TCP配合使用，因此沒有充分利用QUIC提供的功能。 Problem statement What is the impact of QUIC on QoE? How should adaptive bitrate streaming be built to leverage the benefits provided by QUIC? Research objectives A Performance Study and future work Methods we studied QoE performance of different DASH quality adaptation algorithms that are either solely based on the playout buffer filling, or on the video segment download rate, or on both. DASH quality adaptation algorithms that are mainly categorized as">
 <meta name="author" content="
 Author:&nbsp;Jonathan">
-<link rel="canonical" href="https://jonathan-tw.github.io/posts/2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques/">
+<link rel="canonical" href="https://jonathan-tw.github.io/posts/2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.c68298aa5045798fc8b25f8a2882169222cb63a98774faa68088de5b1d7b2bfb.css" integrity="sha256-xoKYqlBFeY/Isl&#43;KKIIWkiLLY6mHdPqmgIjeWx17K/s=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
         onload="hljs.initHighlightingOnLoad();"></script>
@@ -67,18 +67,18 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-<meta property="og:title" content="(2020 IEEE Paper) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques?" />
-<meta property="og:description" content="Summary 在QUIC中，速度快的video stream被比較慢的audio stream給queue住(sharing a single UDP socket buffer)，造成audio request response latency拉長。其上層的DASH計算throughput不考慮response latency，造成實際的throughput跟" />
+<meta property="og:title" content="(2017 NOSSDAV Paper) Not so QUIC A Performance Study of DASH over QUIC" />
+<meta property="og:description" content="Summary QUIC不及TCP在DASH的表現，由於大多數ABR algorighm都經過優化與TCP配合使用，因此沒有充分利用QUIC提供的功能。 Problem statement What is the impact of QUIC on QoE? How should adaptive bitrate streaming be built to leverage the benefits provided by QUIC? Research objectives A Performance Study and future work Methods we studied QoE performance of different DASH quality adaptation algorithms that are either solely based on the playout buffer filling, or on the video segment download rate, or on both. DASH quality adaptation algorithms that are mainly categorized as" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://jonathan-tw.github.io/posts/2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques/" />
+<meta property="og:url" content="https://jonathan-tw.github.io/posts/2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic/" />
 <meta property="og:image" content="https://i.imgur.com/hgG8Fy8.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-06-13T00:00:00+00:00" />
 <meta property="article:modified_time" content="2023-06-14T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://i.imgur.com/hgG8Fy8.png" />
-<meta name="twitter:title" content="(2020 IEEE Paper) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques?"/>
-<meta name="twitter:description" content="Summary 在QUIC中，速度快的video stream被比較慢的audio stream給queue住(sharing a single UDP socket buffer)，造成audio request response latency拉長。其上層的DASH計算throughput不考慮response latency，造成實際的throughput跟"/>
+<meta name="twitter:title" content="(2017 NOSSDAV Paper) Not so QUIC A Performance Study of DASH over QUIC"/>
+<meta name="twitter:description" content="Summary QUIC不及TCP在DASH的表現，由於大多數ABR algorighm都經過優化與TCP配合使用，因此沒有充分利用QUIC提供的功能。 Problem statement What is the impact of QUIC on QoE? How should adaptive bitrate streaming be built to leverage the benefits provided by QUIC? Research objectives A Performance Study and future work Methods we studied QoE performance of different DASH quality adaptation algorithms that are either solely based on the playout buffer filling, or on the video segment download rate, or on both. DASH quality adaptation algorithms that are mainly categorized as"/>
 
 
 <script type="application/ld+json">
@@ -96,8 +96,8 @@ var _hmt = _hmt || [];
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "(2020 IEEE Paper) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques?",
-      "item": "https://jonathan-tw.github.io/posts/2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques/"
+      "name": "(2017 NOSSDAV Paper) Not so QUIC A Performance Study of DASH over QUIC",
+      "item": "https://jonathan-tw.github.io/posts/2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic/"
     }
   ]
 }
@@ -106,14 +106,14 @@ var _hmt = _hmt || [];
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "(2020 IEEE Paper) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques?",
-  "name": "(2020 IEEE Paper) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques?",
-  "description": "Summary 在QUIC中，速度快的video stream被比較慢的audio stream給queue住(sharing a single UDP socket buffer)，造成audio request response latency拉長。其上層的DASH計算throughput不考慮response latency，造成實際的throughput跟",
+  "headline": "(2017 NOSSDAV Paper) Not so QUIC A Performance Study of DASH over QUIC",
+  "name": "(2017 NOSSDAV Paper) Not so QUIC A Performance Study of DASH over QUIC",
+  "description": "Summary QUIC不及TCP在DASH的表現，由於大多數ABR algorighm都經過優化與TCP配合使用，因此沒有充分利用QUIC提供的功能。 Problem statement What is the impact of QUIC on QoE? How should adaptive bitrate streaming be built to leverage the benefits provided by QUIC? Research objectives A Performance Study and future work Methods we studied QoE performance of different DASH quality adaptation algorithms that are either solely based on the playout buffer filling, or on the video segment download rate, or on both. DASH quality adaptation algorithms that are mainly categorized as",
   "keywords": [
     ""
   ],
-  "articleBody": "Summary 在QUIC中，速度快的video stream被比較慢的audio stream給queue住(sharing a single UDP socket buffer)，造成audio request response latency拉長。其上層的DASH計算throughput不考慮response latency，造成實際的throughput跟預期的DASH不同。\nProblem statement 2018 (Not so QUIC): focused on buffer-based ABR these recent studies have indicated that buffer-based techniques are aggressive towards video-bitrate maximization whereas suffers in terms of playback smoothness and rebuffering\n2020 (Does QUIC Suit): focused on modern ABR We investigate further to understand the protocol-level behavior of QUIC, which impacts the QoE performance\nABR’s important metrics: predicted throughput during video streaming.\nResearch objectives Explore the performance of advanced ABR techniques(MPC,Pensieve)\nMPC-Fast/MPC-Robust -\u003e predictive control Pensieve -\u003e Deep Learning\nMethods (EXPERIMENTAL SETUP) computed 3 QoE metrics\naverage playback bitrate total rebuffering duration playback smoothness a linear representation q(Rn)= Rn,similar to [4], indicating that the playback quality increases linearly with the increase of playback bitrate.\nserver: lsquic,Go-QUIC. client: google chrome (we modify dash.js to add support for advance ABR algorithms like Pensieve and MPC)\nTo emulate realistic traffic behavior:\na Web-based javascript DASH player provided by DASH Industry Foundations (DASHIF) to stream the videos at the client side.\nMahimahi: benchmark traffic shaper(Accurate Record-and-Replay for HTTP)，用于記錄來自基于HTTP應用程序的流量，並針對模擬的網路環境進行模擬。 Public FCC dataset(模擬網路中dataset，compatible from Mahimahi): a broadband trace from FCC. Evaluation 比較QOE Average Video Bitrate: buffer-based ABR mechanisms aggressively use the highest quality levels. Playback Smoothness: A fluctuation in the quality level indicates less smoothness in the video playback, and, therefore, reduces the QoE. Advanced ABR techniques, such as MPC-Fast and Pensieve, provide better playback smoothness with DASH/QUIC, although the supported playback quality is lower compared to DASH/TCP. Rebuffering Time: based on which ABR technique is adopted. 比較應用場景 if the response latency is high, this segment may take longer time to reach the client, resulting in a rebuffering\nThe Throughput: the download time = the first and the last bytes received 兩者時間差. The Response Latency: initiation of the HTTP request and the time when the first byte of the response is received 兩者時間差 ( 收到的第一個ACK的時間 - 發起HTTP請求的時間 )\nwhy high response latency observed during the video streaming using QUIC? 在create two parallel HTTP requests情況下，generate two HTTP 相互依賴的stream，結果與上述差不多。 key:socket buffers between HTTP streams.在QUIC中，速度快的stream被比較慢的stream給queue住了。\nTCP creates two separate sockets for the two HTTP streams, each of the sockets maintains its own socket buffer. (Independent) QUIC multiplexes both the streams and uses a single UDP socket having a single socket buffer, the HTTP responses from both the streams interfere, and higher response rate at one stream affects the queuing delay for the response at the other stream (dependent) 在傳統DASH中，video的data rate比audio更高(video data \u003e audio data)，TCP separate socket中的queue depending on their data generation rate.而對於QUIC來說，每個需要播放的segment都需要client發一個http request for video及一個http request for audio，由於video segemnt request先送，UDP socket buffer被video segement塞滿，audio segment必須等video segement在socket buffer中被釋放。\n(a) The audio data has to wait in the queue (the red timeline) before it gets served. (b) The audio streams at QUIC experiences a much higher latency compared to TCP. Audio Stream request時間較久 = response latency is higher\nConclusion The QUIC multiplexing of audio and video streams over a single UDP socket results in additional response latency for the audio segments, which are not captured during the calculation of channel throughput. As a consequence, the ABR algorithms take incorrect decisions during selecting the bitrates based on the calculated throughput over a QUIC connection Note ​\t#Anything additional that is not included in this outline\nReferences ​\t#Relevant articles that might be useful to look at and research on\n",
-  "wordCount" : "1093",
+  "articleBody": "Summary QUIC不及TCP在DASH的表現，由於大多數ABR algorighm都經過優化與TCP配合使用，因此沒有充分利用QUIC提供的功能。\nProblem statement What is the impact of QUIC on QoE? How should adaptive bitrate streaming be built to leverage the benefits provided by QUIC? Research objectives A Performance Study and future work Methods we studied QoE performance of different DASH quality adaptation algorithms that are either solely based on the playout buffer filling, or on the video segment download rate, or on both. DASH quality adaptation algorithms that are mainly categorized as throughputand/or playout buffer-based techniques. BB2-2: based on buffer. map current buffer occupancy to a quality bitrate.\nthe client tends to download a quality that is higher than the measured rate in order to provide the user with maximum average quality.\nSQUAD: based on rate that is specifically optimized for variations in TCP download rates. BOLA: based on both.\nEvaluation How does the author appraise their methodology?\nTestbed (Parallel Server / Single Server) bottleneck link of 10Mbps / Python-based DASH player / Caddy server Internet (wifi on campus / wifi on residential / wired campus Network ) with 17 bitrates ranging from 100Kbps on Aamazon EC2 How is the experiment set up?\nAverage Quality Bitrate (AQB) = Chosen Rate\nNumber of Quality Switches (#QS)\nSpectrum (H): A lower H indicates a better QoE. (bitrate變化的集中度量)\nRebuffering Ratio:\n$$ \\frac {Total;length - video;length } {video;length } $$\nWe investigated different QoE performance metrics such as the average quality bitrate, a measure of quality variations (denoted spectrum) (影片質量差異-頻譜) and the average video stalling duration. Testbed BBA-2 seems to benefit from using QUIC to download segments because of the slow-start or initial phase of the algorithm.\nthe client tends to download a quality that is higher than the measured rate in order to provide the user with maximum average quality. 只有較大的RTT時，會造成buffer不足，間接使得BBA-2 client切換到lower quality.\n(rule-of-thumb)bandwidth-delay product(BDP): B = C * RTT (receive buffer收到的大小，已傳送但尚未確認的資料)\nInternet Wifi significantly worse quality bitrate: QUIC is likely to be competing with more TCP streams than other QUIC streams, it takes longer than TCP to fetch the same segments Future Work HOL blocking (Multiplexing,Multi-Path)\nPacing\nIf a client requests multiple qualities for a single segment, the server could pace the streams to deliver segments at regular intervals instead of using AIMD. 如果單個網段提供多種質量，定期時間下，以stream的速度下去交付segments而不是AIMD\nIf a client requests multiple segments over the same connection via multiple streams the server could implement a decreasing pacing rate for segments requested depending on how soon they are required for playback. client如果在多個stream中請求多個segment，Server可以根據「請求的segment」需要多長時間來降低pacing rate\nAIMD -\u003e TCP擁塞控制的方法\nEliminate Congestion Control Redundancy two congestion on client; in trans/ in DASH algo\nABR clients can disable congestion control in the QUIC transport layer and continue to use their existing congestion control\nQUIC provides the benefits of pacing and assistance for loss recovery in the form of NACKs\nRTP does that.\nConclusion we find through testbed and Internet measurements that QUIC does not provide a boost to current DASH algorithms but instead a degradation in the chosen quality bitrates. Although we observe a lower magnitude of quality variations (較低的質量變化幅度), the degradation of streamed quality bitrate with the use of QUIC is detrimental to overall QoE References ABR work/ congestion control / congestion avoidance\n[14]: Tcp hollywood: An unordered, time-lined, tcp for networked multimedia applications (2016)\nTCP Hollywood,a TCP variant, which implements out-of-order delivery and inconsistent retransmissions in order to improve good-put of video streaming applications\n[21]: Media qoe enhancement with quic (2016)\na new congestion control mechanism using QUIC that aggressively varies download rate according to a buffer-based priority level assigned by the ABR streaming client\n[4]: ABR protocol over UDP (2003)\nthe authors employ a form of congestion avoidance where the sending rate at the server is increased by a single packet for every RTT measurement.This design is different from the AIMD congestion control employed by TCP and QUIC since it eliminates the effect of slow start and attempts to provide an accurate estimate of the available bandwidth in the network. Some drawbacks of this approach are the requirement of two UDP sockets for every connection and the use of Berkeley Packet Filters to collect timestamps at the server and client for every video stream, thus, reducing both performance and scalability of the system\n",
+  "wordCount" : "977",
   "inLanguage": "en",
   "image":"https://i.imgur.com/hgG8Fy8.png","datePublished": "2023-06-13T00:00:00Z",
   "dateModified": "2023-06-14T00:00:00Z",
@@ -123,7 +123,7 @@ var _hmt = _hmt || [];
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://jonathan-tw.github.io/posts/2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques/"
+    "@id": "https://jonathan-tw.github.io/posts/2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic/"
   },
   "publisher": {
     "@type": "Organization",
@@ -220,9 +220,9 @@ var _hmt = _hmt || [];
         <header class="post-header">
             <div class="breadcrumbs"><a href="https://jonathan-tw.github.io">Home</a>&nbsp;»&nbsp;<a href="https://jonathan-tw.github.io/posts/">📚 Posts</a></div>
             <h1 class="post-title">
-                (2020 IEEE Paper) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques?
+                (2017 NOSSDAV Paper) Not so QUIC A Performance Study of DASH over QUIC
             </h1>
-            <div class="post-meta">Created:&nbsp;<span title='2023-06-13 00:00:00 +0000 UTC'>2023-06-13</span>&nbsp;|&nbsp;Upated:&nbsp;2023-06-14&nbsp;|&nbsp;Count words:&nbsp;1093&nbsp;|&nbsp;Reading time:&nbsp;3 mins
+            <div class="post-meta">Created:&nbsp;<span title='2023-06-13 00:00:00 +0000 UTC'>2023-06-13</span>&nbsp;|&nbsp;Upated:&nbsp;2023-06-14&nbsp;|&nbsp;Count words:&nbsp;977&nbsp;|&nbsp;Reading time:&nbsp;2 mins
 
 
 
@@ -256,21 +256,19 @@ var _hmt = _hmt || [];
                 <li>
                     <a href="#research-objectives" aria-label="Research objectives">Research objectives</a></li>
                 <li>
-                    <a href="#methods-experimental-setup" aria-label="Methods (EXPERIMENTAL SETUP)">Methods (EXPERIMENTAL SETUP)</a></li>
+                    <a href="#methods" aria-label="Methods">Methods</a></li>
                 <li>
                     <a href="#evaluation" aria-label="Evaluation">Evaluation</a><ul>
                         
                 <li>
-                    <a href="#%e6%af%94%e8%bc%83qoe" aria-label="比較QOE">比較QOE</a></li>
+                    <a href="#testbed" aria-label="Testbed">Testbed</a></li>
                 <li>
-                    <a href="#%e6%af%94%e8%bc%83%e6%87%89%e7%94%a8%e5%a0%b4%e6%99%af" aria-label="比較應用場景">比較應用場景</a></li>
+                    <a href="#internet" aria-label="Internet">Internet</a></li>
                 <li>
-                    <a href="#why-high-response-latency-observed-during-the-video-streaming-using-quic" aria-label="why high response latency observed during the video streaming using QUIC?">why high response latency observed during the <em>video streaming</em> using QUIC?</a></li></ul>
+                    <a href="#future-work" aria-label="Future Work">Future Work</a></li></ul>
                 </li>
                 <li>
                     <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
-                <li>
-                    <a href="#note" aria-label="Note">Note</a></li>
                 <li>
                     <a href="#references" aria-label="References">References</a>
                 </li>
@@ -340,98 +338,133 @@ var _hmt = _hmt || [];
 </script>
         
         <div class="post-content"><h2 id="summary">Summary<a hidden class="anchor" aria-hidden="true" href="#summary">#</a></h2>
-<p><strong>在QUIC中，速度快的video stream被比較慢的audio stream給queue住(sharing a single UDP socket buffer)，造成audio request response latency拉長。其上層的DASH計算throughput不考慮response latency，造成實際的throughput跟預期的DASH不同。</strong></p>
+<p>QUIC不及TCP在DASH的表現，由於大多數ABR algorighm都經過優化與TCP配合使用，因此沒有充分利用QUIC提供的功能。</p>
 <h2 id="problem-statement">Problem statement<a hidden class="anchor" aria-hidden="true" href="#problem-statement">#</a></h2>
-<ol>
-<li>2018  (Not so QUIC): focused on buffer-based ABR</li>
-</ol>
-<blockquote>
-<p>these recent studies have indicated that buffer-based techniques are aggressive towards video-bitrate maximization whereas suffers in terms of playback smoothness and rebuffering</p>
-</blockquote>
-<ol start="2">
-<li>2020 (Does QUIC Suit): focused on modern ABR</li>
-</ol>
-<blockquote>
-<p>We investigate further to understand the protocol-level behavior of QUIC, which impacts the QoE performance</p>
-</blockquote>
-<p>ABR&rsquo;s important metrics:  predicted throughput during video streaming.</p>
+<ul>
+<li>What is the impact of QUIC on QoE?</li>
+<li>How should adaptive bitrate streaming be built to leverage the benefits provided by QUIC?</li>
+</ul>
 <h2 id="research-objectives">Research objectives<a hidden class="anchor" aria-hidden="true" href="#research-objectives">#</a></h2>
 <ul>
-<li>
-<p>Explore the performance of advanced ABR techniques(MPC,Pensieve)</p>
-<blockquote>
-<p>MPC-Fast/MPC-Robust -&gt; predictive control
-Pensieve -&gt; Deep Learning</p>
-</blockquote>
-</li>
+<li>A Performance Study and future work</li>
 </ul>
-<h2 id="methods-experimental-setup">Methods (EXPERIMENTAL SETUP)<a hidden class="anchor" aria-hidden="true" href="#methods-experimental-setup">#</a></h2>
-<p>computed 3 QoE metrics</p>
-<ol>
-<li>average playback bitrate</li>
-<li>total rebuffering duration</li>
-<li>playback smoothness</li>
-</ol>
-<p><img loading="lazy" src="https://i.imgur.com/l5ydvIh.png" alt="image-20210511143913279"  />
-</p>
-<blockquote>
-<p>a linear representation q(Rn)= Rn,similar to [4], indicating that the playback quality increases linearly with the increase of playback bitrate.</p>
-</blockquote>
-<p>server: lsquic,Go-QUIC.
-client: google chrome (we modify dash.js to add support for advance ABR algorithms like Pensieve and MPC)</p>
-<p>To emulate realistic traffic behavior:</p>
-<blockquote>
-<p>a Web-based javascript DASH player provided by DASH Industry Foundations (DASHIF) to stream the videos at the client side.</p>
-<ol>
-<li>Mahimahi: benchmark traffic shaper(Accurate Record-and-Replay for HTTP)，用于記錄來自基于HTTP應用程序的流量，並針對模擬的網路環境進行模擬。</li>
-<li>Public FCC dataset(模擬網路中dataset，compatible from Mahimahi):  a broadband trace from FCC.</li>
-</ol>
-</blockquote>
-<h2 id="evaluation">Evaluation<a hidden class="anchor" aria-hidden="true" href="#evaluation">#</a></h2>
-<h3 id="比較qoe">比較QOE<a hidden class="anchor" aria-hidden="true" href="#比較qoe">#</a></h3>
-<h3 id="image-20210511144058340httpsiimgurcomefve83fpng"><img loading="lazy" src="https://i.imgur.com/eFVE83F.png" alt="image-20210511144058340"  />
-</h3>
-<ol>
-<li><strong>Average Video Bitrate</strong>: buffer-based ABR mechanisms aggressively use the highest quality levels.</li>
-<li><strong>Playback Smoothness</strong>:
-<ol>
-<li>A fluctuation in the quality level indicates less smoothness in the video playback, and, therefore, reduces the QoE.</li>
-<li>Advanced ABR techniques, such as MPC-Fast and Pensieve, provide better playback smoothness with DASH/QUIC, although the supported playback quality is lower compared to DASH/TCP.</li>
-</ol>
-</li>
-<li><strong>Rebuffering Time</strong>: based on which ABR technique is adopted.</li>
-</ol>
-<h3 id="比較應用場景">比較應用場景<a hidden class="anchor" aria-hidden="true" href="#比較應用場景">#</a></h3>
-<p>if the response latency is high, this segment may take longer time to reach the client, resulting in a rebuffering</p>
-<p><img loading="lazy" src="https://i.imgur.com/WsAeU8q.png" alt="?"  />
-</p>
-<blockquote>
-<p>The Throughput: the download time = <strong>the first and the last bytes received 兩者時間差</strong>.
-The Response Latency: <strong>initiation of the HTTP request and the time when the first byte of the response is received 兩者時間差</strong> ( 收到的第一個ACK的時間 - 發起HTTP請求的時間 )</p>
-</blockquote>
-<h3 id="why-high-response-latency-observed-during-the-video-streaming-using-quic">why high response latency observed during the <em>video streaming</em> using QUIC?<a hidden class="anchor" aria-hidden="true" href="#why-high-response-latency-observed-during-the-video-streaming-using-quic">#</a></h3>
-<p>在create two parallel HTTP requests情況下，generate two HTTP 相互依賴的stream，結果與上述差不多。
-key:<strong>socket buffers between HTTP streams.在QUIC中，速度快的stream被比較慢的stream給queue住了。</strong></p>
+<h2 id="methods">Methods<a hidden class="anchor" aria-hidden="true" href="#methods">#</a></h2>
 <ul>
-<li>TCP creates two separate sockets for the two HTTP streams, each of the sockets maintains its own socket buffer. <em>(Independent)</em></li>
-<li><strong>QUIC multiplexes both the streams and uses a single UDP socket having a single socket buffer, the HTTP responses from both the streams interfere, and higher response rate at one stream affects the queuing delay for the response at the other stream</strong> <em>(dependent)</em></li>
+<li>we studied QoE performance of different DASH quality adaptation algorithms that are either solely based on the <strong>playout buffer filling</strong>, or on the <strong>video segment download rate</strong>, or on <strong>both</strong>.</li>
+<li>DASH quality adaptation algorithms that are mainly categorized as throughputand/or playout buffer-based techniques.</li>
 </ul>
-<p>在傳統DASH中，video的data rate比audio更高(video data &gt; audio data)，TCP separate socket中的queue depending on their data generation rate.而對於QUIC來說，<strong>每個需要播放的segment都需要client發一個http request for video及一個http request for audio</strong>，由於video segemnt request先送，UDP socket buffer被video segement塞滿，audio segment必須等video segement在socket buffer中被釋放。</p>
-<p><img loading="lazy" src="https://i.imgur.com/o3LfyaQ.png" alt="image-20210512155755783"  />
+<p>BB2-2: based on buffer. map current buffer occupancy to a quality bitrate.</p>
+<blockquote>
+<p>the client tends to download a quality that is higher than the measured rate in order to provide the user with maximum average quality.</p>
+</blockquote>
+<p>SQUAD: based on rate that is specifically optimized for variations in TCP download rates.
+BOLA: based on both.</p>
+<h2 id="evaluation">Evaluation<a hidden class="anchor" aria-hidden="true" href="#evaluation">#</a></h2>
+<p>How does the author appraise their methodology?</p>
+<ol>
+<li>Testbed (Parallel Server / Single Server)
+bottleneck link of 10Mbps / Python-based DASH player / Caddy server</li>
+<li>Internet (wifi on campus / wifi on residential / wired campus Network )
+with 17 bitrates ranging from 100Kbps on Aamazon EC2</li>
+</ol>
+<p>How is the experiment set up?</p>
+<ol>
+<li>
+<p>Average Quality Bitrate (AQB) = Chosen Rate</p>
+</li>
+<li>
+<p>Number of Quality Switches (#QS)</p>
+</li>
+<li>
+<p>Spectrum (H): A lower H indicates a better QoE. (bitrate變化的集中度量)</p>
+</li>
+<li>
+<p>Rebuffering Ratio:</p>
+<p>$$
+\frac {Total;length - video;length } {video;length }
+$$</p>
+</li>
+</ol>
+<ul>
+<li>We investigated different QoE performance metrics such as the <strong>average quality bitrate</strong>, a measure of <strong>quality variations (denoted spectrum)</strong> (影片質量差異-頻譜) and the <strong>average video stalling duration</strong>.</li>
+</ul>
+<h3 id="testbed">Testbed<a hidden class="anchor" aria-hidden="true" href="#testbed">#</a></h3>
+<p><img loading="lazy" src="https://i.imgur.com/WChgkik.png" alt="image-20210504142314652"  />
+</p>
+<p><img loading="lazy" src="https://i.imgur.com/b3IidlT.png" alt="image-20210504141515242"  />
 </p>
 <blockquote>
-<p>(a) The audio data has to wait in the queue (the red timeline) before it gets served.
-(b) The audio streams at QUIC experiences a much higher latency compared to TCP.
-<strong>Audio Stream request時間較久 = response latency is higher</strong></p>
+<p>BBA-2 seems to benefit from using QUIC to download segments because of the slow-start or initial phase of the algorithm.</p>
+<blockquote>
+<p>the client tends to download a quality that is higher than the measured rate in order to provide the user with maximum average quality.
+只有較大的RTT時，會造成buffer不足，間接使得BBA-2 client切換到lower quality.</p>
 </blockquote>
+</blockquote>
+<p><strong>(<em>rule-of-thumb</em>)bandwidth-delay product(BDP): B = C * RTT (receive buffer收到的大小，已傳送但尚未確認的資料)</strong></p>
+<h3 id="internet">Internet<a hidden class="anchor" aria-hidden="true" href="#internet">#</a></h3>
+<p><img loading="lazy" src="https://i.imgur.com/xtzp6MI.png" alt="image-20210504152404870"  />
+</p>
+<ol>
+<li>Wifi significantly worse quality bitrate: QUIC is likely to be competing with more TCP streams than other QUIC streams, it takes longer than TCP to fetch the same segments</li>
+</ol>
+<h3 id="future-work">Future Work<a hidden class="anchor" aria-hidden="true" href="#future-work">#</a></h3>
+<ol>
+<li>
+<p>HOL blocking (Multiplexing,Multi-Path)</p>
+</li>
+<li>
+<p>Pacing</p>
+<ol>
+<li>
+<p>If a client requests multiple qualities for a single segment, the server could pace the streams to deliver segments at regular intervals instead of using AIMD.
+如果單個網段提供多種質量，定期時間下，以stream的速度下去交付segments而不是<strong>AIMD</strong></p>
+</li>
+<li>
+<p>If a client requests multiple segments over the same connection via multiple streams the server could implement a decreasing pacing rate for segments requested depending on how soon they are required for playback.
+client如果在多個stream中請求多個segment，Server可以根據「請求的segment」需要多長時間來降低pacing rate</p>
+<blockquote>
+<p>AIMD -&gt; TCP擁塞控制的方法</p>
+</blockquote>
+</li>
+<li>
+<p>Eliminate Congestion Control Redundancy
+two congestion on client; in trans/ in DASH algo</p>
+<blockquote>
+<p>ABR clients can disable congestion control in the QUIC transport layer and continue to use their existing congestion control</p>
+</blockquote>
+<p><strong>QUIC provides the benefits of pacing and assistance for loss recovery in the form of NACKs</strong></p>
+<blockquote>
+<p>RTP does that.</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ol>
 <h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
 <ul>
-<li><strong>The QUIC multiplexing of audio and video streams over a single UDP socket results in additional response latency for the audio segments, which are not captured during the calculation of channel throughput</strong>. As a consequence, the ABR algorithms take incorrect decisions during selecting the bitrates based on the calculated throughput over a QUIC connection</li>
+<li>we find through testbed and Internet measurements that <strong>QUIC does not provide a boost to current DASH algorithms but instead a degradation in the chosen quality bitrates</strong>.</li>
+<li>Although we observe a lower magnitude of quality variations (較低的質量變化幅度), the degradation of streamed quality bitrate with the use of QUIC is detrimental to overall QoE</li>
 </ul>
-<h2 id="note">Note<a hidden class="anchor" aria-hidden="true" href="#note">#</a></h2>
-<p>​	#Anything additional that is not included in this outline</p>
 <h2 id="references">References<a hidden class="anchor" aria-hidden="true" href="#references">#</a></h2>
-<p>​	#Relevant articles that might be useful to look at and research on</p>
+<p>ABR work/ congestion control / congestion avoidance</p>
+<blockquote>
+<p>[14]: Tcp hollywood: An unordered, time-lined, tcp for networked multimedia applications (2016)</p>
+<blockquote>
+<p>TCP Hollywood,a TCP variant, which implements out-of-order delivery and inconsistent retransmissions in order to improve good-put of video streaming applications</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>[21]: Media qoe enhancement with quic (2016)</p>
+<blockquote>
+<p>a new congestion control mechanism using QUIC that aggressively varies download rate according to a buffer-based priority level assigned by the ABR streaming client</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>[4]: ABR protocol over UDP (2003)</p>
+<blockquote>
+<p>the authors employ a form of congestion avoidance where the sending rate at the server is increased by a single packet for every RTT measurement.This design is different from the AIMD congestion control employed by TCP and QUIC since it eliminates the effect of slow start and attempts to provide an accurate estimate of the available bandwidth in the network. Some drawbacks of this approach are the requirement of two UDP sockets for every connection and the use of Berkeley Packet Filters to collect timestamps at the server and client for every video stream, thus, reducing both performance and scalability of the system</p>
+</blockquote>
+</blockquote>
 
 
         </div>
@@ -439,57 +472,52 @@ key:<strong>socket buffers between HTTP streams.在QUIC中，速度快的stream�
         <footer class="post-footer">
             
 <nav class="paginav">
-  <a class="prev" href="https://jonathan-tw.github.io/posts/2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>(2017 NOSSDAV Paper) Not so QUIC A Performance Study of DASH over QUIC</span>
-  </a>
-  <a class="next" href="https://jonathan-tw.github.io/posts/2023-%E8%BB%9F%E9%9F%8C%E6%96%B0%E9%AE%AE%E4%BA%BA-%E9%9D%A2%E8%A9%A6%E6%99%82%E7%A8%8B/">
+  <a class="next" href="https://jonathan-tw.github.io/posts/2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques/">
     <span class="title">Next »</span>
     <br>
-    <span>2023 軟韌新鮮人 面試時程</span>
+    <span>(2020 IEEE Paper) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques?</span>
   </a>
 </nav>
 
 
 <div class="share-buttons">
-    <a target="_blank" rel="noopener noreferrer" aria-label="share (2020 IEEE Paper) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques? on twitter"
-       href="https://twitter.com/intent/tweet/?text=%282020%20IEEE%20Paper%29%20Does%20QUIC%20Suit%20Well%20With%20Modern%20Adaptive%20Bitrate%20Streaming%20Techniques%3f&amp;url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques%2f&amp;hashtags=paper%2cquic">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (2017 NOSSDAV Paper) Not so QUIC A Performance Study of DASH over QUIC on twitter"
+       href="https://twitter.com/intent/tweet/?text=%282017%20NOSSDAV%20Paper%29%20Not%20so%20QUIC%20A%20Performance%20Study%20of%20DASH%20over%20QUIC&amp;url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic%2f&amp;hashtags=paper%2cquic">
     <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
         </svg>
     </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share (2020 IEEE Paper) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques? on linkedin"
-       href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques%2f&amp;title=%282020%20IEEE%20Paper%29%20Does%20QUIC%20Suit%20Well%20With%20Modern%20Adaptive%20Bitrate%20Streaming%20Techniques%3f&amp;summary=%282020%20IEEE%20Paper%29%20Does%20QUIC%20Suit%20Well%20With%20Modern%20Adaptive%20Bitrate%20Streaming%20Techniques%3f&amp;source=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques%2f">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (2017 NOSSDAV Paper) Not so QUIC A Performance Study of DASH over QUIC on linkedin"
+       href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic%2f&amp;title=%282017%20NOSSDAV%20Paper%29%20Not%20so%20QUIC%20A%20Performance%20Study%20of%20DASH%20over%20QUIC&amp;summary=%282017%20NOSSDAV%20Paper%29%20Not%20so%20QUIC%20A%20Performance%20Study%20of%20DASH%20over%20QUIC&amp;source=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic%2f">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
         </svg>
     </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share (2020 IEEE Paper) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques? on reddit"
-       href="https://reddit.com/submit?url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques%2f&title=%282020%20IEEE%20Paper%29%20Does%20QUIC%20Suit%20Well%20With%20Modern%20Adaptive%20Bitrate%20Streaming%20Techniques%3f">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (2017 NOSSDAV Paper) Not so QUIC A Performance Study of DASH over QUIC on reddit"
+       href="https://reddit.com/submit?url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic%2f&title=%282017%20NOSSDAV%20Paper%29%20Not%20so%20QUIC%20A%20Performance%20Study%20of%20DASH%20over%20QUIC">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
         </svg>
     </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share (2020 IEEE Paper) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques? on facebook"
-       href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques%2f">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (2017 NOSSDAV Paper) Not so QUIC A Performance Study of DASH over QUIC on facebook"
+       href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic%2f">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
         </svg>
     </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share (2020 IEEE Paper) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques? on whatsapp"
-       href="https://api.whatsapp.com/send?text=%282020%20IEEE%20Paper%29%20Does%20QUIC%20Suit%20Well%20With%20Modern%20Adaptive%20Bitrate%20Streaming%20Techniques%3f%20-%20https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques%2f">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (2017 NOSSDAV Paper) Not so QUIC A Performance Study of DASH over QUIC on whatsapp"
+       href="https://api.whatsapp.com/send?text=%282017%20NOSSDAV%20Paper%29%20Not%20so%20QUIC%20A%20Performance%20Study%20of%20DASH%20over%20QUIC%20-%20https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic%2f">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
         </svg>
     </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share (2020 IEEE Paper) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques? on telegram"
-       href="https://telegram.me/share/url?text=%282020%20IEEE%20Paper%29%20Does%20QUIC%20Suit%20Well%20With%20Modern%20Adaptive%20Bitrate%20Streaming%20Techniques%3f&amp;url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques%2f">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (2017 NOSSDAV Paper) Not so QUIC A Performance Study of DASH over QUIC on telegram"
+       href="https://telegram.me/share/url?text=%282017%20NOSSDAV%20Paper%29%20Not%20so%20QUIC%20A%20Performance%20Study%20of%20DASH%20over%20QUIC&amp;url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic%2f">
         <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
             <path
                     d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />

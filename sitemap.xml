@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://jonathan-tw.github.io/posts/2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic/</loc>
+    <lastmod>2023-06-14T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://jonathan-tw.github.io/posts/2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques/</loc>
     <lastmod>2023-06-14T00:00:00+00:00</lastmod>
   </url><url>
