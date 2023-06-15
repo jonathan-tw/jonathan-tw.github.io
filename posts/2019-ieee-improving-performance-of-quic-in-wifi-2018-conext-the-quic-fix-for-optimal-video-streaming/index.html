@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>(2019 IEEE) Improving Performance of QUIC in WiFi &amp; (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming | Jonathan&#39;s Blog</title>
 <meta name="keywords" content="">
-<meta name="description" content="Improving Performance of QUIC in WiFi Problem Domain WiFi (wireless) Solution 由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC) 1. reducing ACK frequency. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK 2. disabling packet pacing. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates. Evaluation QUIC: detection algorithm利用ACK及RTT進行d">
+<meta name="description" content="Improving Performance of QUIC in WiFi Problem Domain WiFi (wireless) Solution 由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC). reducing ACK frequency. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK. disabling packet pacing. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates. Evaluation QUIC: detection algorithm利用ACK及RTT進行de">
 <meta name="author" content="
 Author:&nbsp;Jonathan">
 <link rel="canonical" href="https://jonathan-tw.github.io/posts/2019-ieee-improving-performance-of-quic-in-wifi-2018-conext-the-quic-fix-for-optimal-video-streaming/">
@@ -68,17 +68,17 @@ var _hmt = _hmt || [];
 })();
 </script>
 <meta property="og:title" content="(2019 IEEE) Improving Performance of QUIC in WiFi &amp; (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming" />
-<meta property="og:description" content="Improving Performance of QUIC in WiFi Problem Domain WiFi (wireless) Solution 由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC) 1. reducing ACK frequency. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK 2. disabling packet pacing. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates. Evaluation QUIC: detection algorithm利用ACK及RTT進行d" />
+<meta property="og:description" content="Improving Performance of QUIC in WiFi Problem Domain WiFi (wireless) Solution 由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC). reducing ACK frequency. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK. disabling packet pacing. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates. Evaluation QUIC: detection algorithm利用ACK及RTT進行de" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jonathan-tw.github.io/posts/2019-ieee-improving-performance-of-quic-in-wifi-2018-conext-the-quic-fix-for-optimal-video-streaming/" />
 <meta property="og:image" content="https://i.imgur.com/hgG8Fy8.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-06-15T00:00:00+00:00" />
+<meta property="article:published_time" content="2023-06-14T00:00:00+00:00" />
 <meta property="article:modified_time" content="2023-06-15T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://i.imgur.com/hgG8Fy8.png" />
 <meta name="twitter:title" content="(2019 IEEE) Improving Performance of QUIC in WiFi &amp; (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming"/>
-<meta name="twitter:description" content="Improving Performance of QUIC in WiFi Problem Domain WiFi (wireless) Solution 由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC) 1. reducing ACK frequency. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK 2. disabling packet pacing. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates. Evaluation QUIC: detection algorithm利用ACK及RTT進行d"/>
+<meta name="twitter:description" content="Improving Performance of QUIC in WiFi Problem Domain WiFi (wireless) Solution 由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC). reducing ACK frequency. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK. disabling packet pacing. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates. Evaluation QUIC: detection algorithm利用ACK及RTT進行de"/>
 
 
 <script type="application/ld+json">
@@ -108,14 +108,14 @@ var _hmt = _hmt || [];
   "@type": "BlogPosting",
   "headline": "(2019 IEEE) Improving Performance of QUIC in WiFi \u0026 (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming",
   "name": "(2019 IEEE) Improving Performance of QUIC in WiFi \u0026 (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming",
-  "description": "Improving Performance of QUIC in WiFi Problem Domain WiFi (wireless) Solution 由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC) 1. reducing ACK frequency. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK 2. disabling packet pacing. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates. Evaluation QUIC: detection algorithm利用ACK及RTT進行d",
+  "description": "Improving Performance of QUIC in WiFi Problem Domain WiFi (wireless) Solution 由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC). reducing ACK frequency. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK. disabling packet pacing. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates. Evaluation QUIC: detection algorithm利用ACK及RTT進行de",
   "keywords": [
     ""
   ],
-  "articleBody": "Improving Performance of QUIC in WiFi Problem Domain WiFi (wireless)\nSolution 由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC) 1. reducing ACK frequency. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK 2. disabling packet pacing. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates.\nEvaluation QUIC: detection algorithm利用ACK及RTT進行detect。使用packet pacing時，會降低aggregation，導致packet delay增加被detect到( minimum delay \u003e threshold ) QUIC從slow-start提早離開。 BQUIC: 不使用packet pacing，inter packet time降低。\nBQUIC increases the throughput between 20% to 30%\nFindings 從pacing機制上進行改良，解決文中slow-start較早退出的問題。 動態改善packet pacing: 在掉包率小的環境進行frame aggregation，在掉包大的環境使用原本QUIC。ieda: 依據下層網路環境的不同，而有彈性的使用不同的pacing機制。\nThe QUIC Fix for Optimal Video Streaming Problem Domain DASH (media in H.264)\nSolution reliable on I-Frame + unreliable on B/P-Frame，B/P-Frame參考I-Frame對其進行增量or差異的encoding，丟了I-Frame，其他B/P-Frame也沒用了。 unreliable data: - QUIC handshake to negotiate support for unreliable streams - replace retransmission of missed data with new data - provide a meta stream within QUIC to tag individual QUIC frames as reliable or unreliable. non-trivial challenge: synchronization of the streams: FEC on unreliable data Evaluation bufRatio = re-buffering time / total video time\nrateBuf = frequency of re-buffering events to / total video frame\naSSIM: 改善沒有考量latency的測量方式，晚到的frame會delay，考量了其stall對frame影響的綜合評估 The rateBuf values for both ClipStream and ClipStreamFEC are very close to 0%:\n真正要reliable的packet number變很少 (approx. 1% by count or 12% by size) of the overall video stream reliably\nFindings 從econder/decoder上進行( gpu RGG\u003c–\u003eYUV )，降低解碼CPU占用率。\nan out-of-order packet is inserted into the byte-stream within re-order buffer unless the data has already been consumed by the application. If the application tries to consume “missing” byte-ranges the byte-stream is filled with zeros.\nQ: (Sync) How will the receiver combine the frames from the different streams into the appropriate order in the playback buffer?\nA: add a reliable control stream to signal multiplexing and demultiplexing information for diff sterams, The control stream helps the client to re-assemble the video file (reliably transfer end-of-stream )\nQUICsilver: Optimising QUIC for use with Real-Time Multimedia Traffic (University of Glasgow 2019) Problem Domain RTP (media in H.264)\nSolution 提出playback deadline的概念，在retransmit之前，確定內容的有效性(有沒有用)，有助於於減少發送不要的data。 server predicts that the packet will reach the client in time to be useful for video playback . implementing partial reliability within QUIC can assist with reducing latencies and playback delays\nFindings 在QUIC中加入Meda-awareness\n",
-  "wordCount" : "926",
+  "articleBody": "Improving Performance of QUIC in WiFi Problem Domain WiFi (wireless)\nSolution 由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC).\nreducing ACK frequency. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK. disabling packet pacing. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates. Evaluation QUIC: detection algorithm利用ACK及RTT進行detect。使用packet pacing時，會降低aggregation，導致packet delay增加被detect到( minimum delay \u003e threshold ) QUIC從slow-start提早離開。\nBQUIC: 不使用packet pacing，inter packet time降低。\nBQUIC increases the throughput between 20% to 30%\nFindings 從pacing機制上進行改良，解決文中slow-start較早退出的問題。 動態改善packet pacing: 在掉包率小的環境進行frame aggregation，在掉包大的環境使用原本QUIC。ieda: 依據下層網路環境的不同，而有彈性的使用不同的pacing機制。\nThe QUIC Fix for Optimal Video Streaming Problem Domain DASH (media in H.264)\nSolution reliable on I-Frame + unreliable on B/P-Frame，B/P-Frame參考I-Frame對其進行增量or差異的encoding，丟了I-Frame，其他B/P-Frame也沒用了。 unreliable data: - QUIC handshake to negotiate support for unreliable streams - replace retransmission of missed data with new data - provide a meta stream within QUIC to tag individual QUIC frames as reliable or unreliable. non-trivial challenge: synchronization of the streams: FEC on unreliable data Evaluation bufRatio = re-buffering time / total video time\nrateBuf = frequency of re-buffering events to / total video frame\naSSIM: 改善沒有考量latency的測量方式，晚到的frame會delay，考量了其stall對frame影響的綜合評估 The rateBuf values for both ClipStream and ClipStreamFEC are very close to 0%:\n真正要reliable的packet number變很少 (approx. 1% by count or 12% by size) of the overall video stream reliably\nFindings 從econder/decoder上進行( gpu RGG\u003c–\u003eYUV )，降低解碼CPU占用率。\nan out-of-order packet is inserted into the byte-stream within re-order buffer unless the data has already been consumed by the application. If the application tries to consume “missing” byte-ranges the byte-stream is filled with zeros.\nQ: (Sync) How will the receiver combine the frames from the different streams into the appropriate order in the playback buffer?\nA: add a reliable control stream to signal multiplexing and demultiplexing information for diff sterams, The control stream helps the client to re-assemble the video file (reliably transfer end-of-stream )\nQUICsilver: Optimising QUIC for use with Real-Time Multimedia Traffic (University of Glasgow 2019) Problem Domain RTP (media in H.264)\nSolution 提出playback deadline的概念，在retransmit之前，確定內容的有效性(有沒有用)，有助於於減少發送不要的data。 server predicts that the packet will reach the client in time to be useful for video playback . implementing partial reliability within QUIC can assist with reducing latencies and playback delays\nFindings 在QUIC中加入Meda-awareness\n",
+  "wordCount" : "925",
   "inLanguage": "en",
-  "image":"https://i.imgur.com/hgG8Fy8.png","datePublished": "2023-06-15T00:00:00Z",
+  "image":"https://i.imgur.com/hgG8Fy8.png","datePublished": "2023-06-14T00:00:00Z",
   "dateModified": "2023-06-15T00:00:00Z",
   "author":{
     "@type": "Person",
@@ -222,7 +222,7 @@ var _hmt = _hmt || [];
             <h1 class="post-title">
                 (2019 IEEE) Improving Performance of QUIC in WiFi &amp; (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming
             </h1>
-            <div class="post-meta">Created:&nbsp;<span title='2023-06-15 00:00:00 +0000 UTC'>2023-06-15</span>&nbsp;|&nbsp;Upated:&nbsp;2023-06-15&nbsp;|&nbsp;Count words:&nbsp;926&nbsp;|&nbsp;Reading time:&nbsp;2 mins
+            <div class="post-meta">Created:&nbsp;<span title='2023-06-14 00:00:00 +0000 UTC'>2023-06-14</span>&nbsp;|&nbsp;Upated:&nbsp;2023-06-15&nbsp;|&nbsp;Count words:&nbsp;925&nbsp;|&nbsp;Reading time:&nbsp;2 mins
 
 
 
@@ -354,10 +354,15 @@ var _hmt = _hmt || [];
 <h2 id="problem-domain">Problem Domain<a hidden class="anchor" aria-hidden="true" href="#problem-domain">#</a></h2>
 <p>WiFi (wireless)</p>
 <h2 id="solution">Solution<a hidden class="anchor" aria-hidden="true" href="#solution">#</a></h2>
-<p>由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC) 1. <strong>reducing ACK frequency</strong>. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK 2. <strong>disabling packet pacing</strong>. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates.</p>
+<p>由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC).</p>
+<ol>
+<li><strong>reducing ACK frequency</strong>. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK.</li>
+<li><strong>disabling packet pacing</strong>. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates.</li>
+</ol>
 <h2 id="evaluation">Evaluation<a hidden class="anchor" aria-hidden="true" href="#evaluation">#</a></h2>
-<p><img loading="lazy" src="https://i.imgur.com/LRLmT2o.png" alt="image-20210706165336998"  />
-<strong>QUIC</strong>: detection algorithm利用ACK及RTT進行detect。使用packet pacing時，會降低aggregation，導致packet delay增加被detect到( minimum delay &gt; threshold ) QUIC從slow-start提早離開。 <strong>BQUIC</strong>: 不使用packet pacing，inter packet time降低。</p>
+<img src="https://i.imgur.com/LRLmT2o.png" alt="image-20210706165336998" style="zoom:67%;" />
+<p><strong>QUIC</strong>: detection algorithm利用ACK及RTT進行detect。使用packet pacing時，會降低aggregation，導致packet delay增加被detect到( minimum delay &gt; threshold ) QUIC從slow-start提早離開。</p>
+<p><strong>BQUIC</strong>: 不使用packet pacing，inter packet time降低。</p>
 <p><img src="https://i.imgur.com/gAZFInp.png" alt="image-20210706175022250" style="zoom:50%;" /><img src="https://i.imgur.com/x1pVOxc.png" alt="image-20210706192532314" style="zoom: 61%;" /></p>
 <p>BQUIC increases the throughput between 20% to 30%</p>
 <h2 id="findings">Findings<a hidden class="anchor" aria-hidden="true" href="#findings">#</a></h2>
@@ -409,6 +414,11 @@ var _hmt = _hmt || [];
         <footer class="post-footer">
             
 <nav class="paginav">
+  <a class="prev" href="https://jonathan-tw.github.io/posts/%E8%AA%B2%E7%A8%8B%E7%AD%86%E8%A8%98ntust-network-communication-protocols/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>(課程筆記)(NTUST) Network Communication Protocols</span>
+  </a>
   <a class="next" href="https://jonathan-tw.github.io/posts/2017-nossdav-not-so-quic-a-performance-study-of-dash-over-quic/">
     <span class="title">Next »</span>
     <br>

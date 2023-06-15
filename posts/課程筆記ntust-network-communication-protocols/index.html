@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>(課程筆記)(NTUST) Network Communication Protocols | Jonathan&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Layered Outline What&rsquo;s a protocol? protocols define format, order of messages sent and received among network entities, and actions taken on message transmission, receipt TCP/IP 5 Layer Application Layer HTTP、DHCP、RPC、P2P、DNS Transport Layer UDP、TCP Network Layer (IP) IP、ICMP、OSPF、BGP Data-link Layer (MAC) MAC、VLAN、STP Physical Layer 網路挑線 ISO/OSI 7 Layer  Presentation: allow applications to interpret meaning of data. example: encryption, compression, machine-specific conventions.  Session: synchronization, checkpointing, recovery of data exchange. 只要是在網絡上跑的包，都是完整的">
+<meta name="author" content="
+Author:&nbsp;Jonathan">
+<link rel="canonical" href="https://jonathan-tw.github.io/posts/%E8%AA%B2%E7%A8%8B%E7%AD%86%E8%A8%98ntust-network-communication-protocols/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.c68298aa5045798fc8b25f8a2882169222cb63a98774faa68088de5b1d7b2bfb.css" integrity="sha256-xoKYqlBFeY/Isl&#43;KKIIWkiLLY6mHdPqmgIjeWx17K/s=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+        onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://jonathan-tw.github.io/img/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://jonathan-tw.github.io/img/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://jonathan-tw.github.io/img/favicon.ico">
+<link rel="apple-touch-icon" href="https://jonathan-tw.github.io/img/favicon.ico">
+<link rel="mask-icon" href="https://jonathan-tw.github.io/img/favicon.ico">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<meta property="og:title" content="(課程筆記)(NTUST) Network Communication Protocols" />
+<meta property="og:description" content="Layered Outline What&rsquo;s a protocol? protocols define format, order of messages sent and received among network entities, and actions taken on message transmission, receipt TCP/IP 5 Layer Application Layer HTTP、DHCP、RPC、P2P、DNS Transport Layer UDP、TCP Network Layer (IP) IP、ICMP、OSPF、BGP Data-link Layer (MAC) MAC、VLAN、STP Physical Layer 網路挑線 ISO/OSI 7 Layer  Presentation: allow applications to interpret meaning of data. example: encryption, compression, machine-specific conventions.  Session: synchronization, checkpointing, recovery of data exchange. 只要是在網絡上跑的包，都是完整的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jonathan-tw.github.io/posts/%E8%AA%B2%E7%A8%8B%E7%AD%86%E8%A8%98ntust-network-communication-protocols/" />
+<meta property="og:image" content="https://i.imgur.com/Z6BvqSJ.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-06-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-06-15T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://i.imgur.com/Z6BvqSJ.png" />
+<meta name="twitter:title" content="(課程筆記)(NTUST) Network Communication Protocols"/>
+<meta name="twitter:description" content="Layered Outline What&rsquo;s a protocol? protocols define format, order of messages sent and received among network entities, and actions taken on message transmission, receipt TCP/IP 5 Layer Application Layer HTTP、DHCP、RPC、P2P、DNS Transport Layer UDP、TCP Network Layer (IP) IP、ICMP、OSPF、BGP Data-link Layer (MAC) MAC、VLAN、STP Physical Layer 網路挑線 ISO/OSI 7 Layer  Presentation: allow applications to interpret meaning of data. example: encryption, compression, machine-specific conventions.  Session: synchronization, checkpointing, recovery of data exchange. 只要是在網絡上跑的包，都是完整的"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "📚 Posts",
+          "item": "https://jonathan-tw.github.io/posts/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "(課程筆記)(NTUST) Network Communication Protocols",
+      "item": "https://jonathan-tw.github.io/posts/%E8%AA%B2%E7%A8%8B%E7%AD%86%E8%A8%98ntust-network-communication-protocols/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "(課程筆記)(NTUST) Network Communication Protocols",
+  "name": "(課程筆記)(NTUST) Network Communication Protocols",
+  "description": "Layered Outline What\u0026rsquo;s a protocol? protocols define format, order of messages sent and received among network entities, and actions taken on message transmission, receipt TCP/IP 5 Layer Application Layer HTTP、DHCP、RPC、P2P、DNS Transport Layer UDP、TCP Network Layer (IP) IP、ICMP、OSPF、BGP Data-link Layer (MAC) MAC、VLAN、STP Physical Layer 網路挑線 ISO/OSI 7 Layer  Presentation: allow applications to interpret meaning of data. example: encryption, compression, machine-specific conventions.  Session: synchronization, checkpointing, recovery of data exchange. 只要是在網絡上跑的包，都是完整的",
+  "keywords": [
+    ""
+  ],
+  "articleBody": "Layered Outline What’s a protocol?\nprotocols define format, order of messages sent and received among network entities, and actions taken on message transmission, receipt\nTCP/IP 5 Layer Application Layer HTTP、DHCP、RPC、P2P、DNS Transport Layer UDP、TCP Network Layer (IP) IP、ICMP、OSPF、BGP Data-link Layer (MAC) MAC、VLAN、STP Physical Layer 網路挑線 ISO/OSI 7 Layer  Presentation: allow applications to interpret meaning of data. example: encryption, compression, machine-specific conventions.  Session: synchronization, checkpointing, recovery of data exchange.\n只要是在網絡上跑的包，都是完整的。可以有下層沒上層，絕對不可能有上層沒下層。 IP address: 一個網卡在網絡世界的通訊地址，相當於我們現實世界的門牌號碼。 MAC address: 身份證，區域網內通信用。\nMac在data link layer使用，IP在network layer使用，IP位置在區域網內可能發生改變，唯一性的MAC需要。 mac位置全球唯一，固化在網卡裡。OS識別出來的mac位置可以更改，他是一個string，我們常說修改的mac指的是修改電腦註冊表中的紀錄。 OpenFlow: Flow Table Entries operates between controller, switch.\nApplication Layer HTTP ( Hyper Text Transfer Protocol ) Uses TCP; stateless. non-persistent HTTP ➡ at most one object sent over TCP connection,connection then closed. persistent HTTP ➡ multiple objects can be sent over single TCP connection between client, server. HTTP response time = 2RTT (建立TCP連線、請求和接收物件)+ file transmission time\nserver希望能識別使用者身分提供不同的內容，因HTTP是stateless，所以HTTP使用cookies。\n結合cookie和user所提供的帳號資訊，website能獲得大量使用者的相關資料，有可能販賣這些資訊(安全疑慮)\nWeb cache = proxy server ( server for original requesting client、client to origin server )\nproxy servers reduce response time for client request. proxy servers reduce traffic on an institution’s access link. Electronic Mail SMTP ( Simple Mail Transfer Protocol ) between mail servers to send email messages.\nTCP /port 25 use persistent connections. DNS ( Domain Name System ) A distributed, hierarchical database. Translate host name to IP address. ( UDP port/53 )\nroot DNS server、 TLD DNS server ( .com/.org/.edu/.gov )、 authoritative DNS server /au.thor.i.ta.tive/ Local DNS name server: each ISP (residential ISP, company, university) has one = DNS caching\nvideo streaming and content distribution networks (CDNs) DHCP ( Dynamic Host Configuration Protocol ） 主要是用來提供在TCP/ IP網路上的主機可以自動的分配到IP及所需要的相關設定。 DHCP可分成兩個部分來看，一個是DHCP伺服器端，另一個是DHCP用戶端。\nDHCP server有一個集中式的管理程式，主要負責設定網路各主機上所需要的IP資訊，並 提供給Client索取使用。DHCP用戶端是負責向DHCP伺服器索取所需要之相關IP資訊，並將資料註冊到該系統中。\nSockets Transport Layer what transport service does an app need?\ndata integrity timing throughput security TCP DEF ➡ reliable transport、flow control、connection-oriented doesn’t provide ➡ timing, minimum throughput guarantee, security\nTCP的增強特性 Fast Retransmit \u0026 Recovery （FRR），當receiver發現丟包時，發送重複的ACK給對方，當sender收到3個重複的ack時，就確人此packet為loss，馬上進行重傳(不需等待time out)\n為了在不可靠的網路介面上建立可靠的傳送資料服務，TCP必須解決可靠性，flow control的問題，而且必須能為上層的應用程式來提供多個埠口，用來同時為多個應用程式提供資料，同時，TCP必須解決連接的問題，這樣子的話，TCP才是個可靠的通訊協定，而最後也要克服通訊安全的問題。 TCP連接是可靠的，而且保証了傳送區段的順序，保証順序的能力是用一個序號來達成的，區段內也包括一個序列號，表示接收方準備好這個序號的區段，在TCP協定傳送一個區段時，它會同時把這個區段放入重新發送的序列中，同時啟動計數器，如果收到了確認訊息，就會把重送的區段序列刪除，如果超過計數時間時，就會將這個區段重送。 Sliding Window: data flow control的技巧，它要求sender host在傳送一定量的data以後，必須接收對放的確認。 Window Size是由destination決定，而且會依網路流量調整並非一成不變(maybe congestion)，The destination can send an acknowledgment at any time。\nTCP socket identified by 4-tuple:\n• source IP address • source port number • dest IP address • dest port number\nDemux (由下到上傳到socket): receiver uses all four values to direct segment to appropriate socket. each socket identified by its own 4-tuple. (不同的source ip address or port number，就會轉交給兩份不同的socket)\nTCP congestion control flow control ➡ receiver 控制sender別送太多 (Receive Window)\ncwnd (Congestion Window, bytes) ➡ 限制TCP sender資料送入網路的速率，為了避免congestion，值應該都\u003c cwnd。\nrate = cwnd (量) / RTT bytes/sec ssthresh = cwnd / 2\nMSS: ( Maximum Segment Size ) ➡ MSS是TCP數據包次能夠傳輸的最大數據分段。建立連線之前雙方講好，因TCP為雙向連線，所以兩邊傳遞之最大值可以不一樣\n爲了達到最佳的傳輸效能，TCP協議在建立連接的時候通常要協商雙方的MSS值，這個值TCP協議在實現的時候往往用MTU值代替（需要減去IP數據包包頭的大小20Bytes和TCP數據段的包頭20Bytes）所以一般MSS值1460，通訊雙方會根據雙方提供的MSS值得最小值确定爲這次連接的最大MSS值。\nSlow Start ➡ initial.cwnd = 1MSS，每當receiver得到一次確認後就增加 1 MSS (各將cwnd+1，double cwnd)， 此一過程造成每回RTT中傳送速率倍增，因此TCP的傳送速率從低速開始，接下來會以指數性地成長。\n指數成長 cwnd = cwnd + 1 出2回2 出4回4 出8回8，傳的單位是per ack，每次回來幾個ack就+1幾次。\nSuccess Event\nincrease exponentially (new ack) Slow start to congestion avoidance, cwnd gets to 1/2 of its value before timeout (when cwnd \u003e= ssthresh) Loss Event ( timeout )\ncut cwnd = 1 MSS. ssthresh = cwnd / 2 Congestion Avoidance ➡ 線性成長 cwnd = cwnd+1 (cwnd = cwnd + MSS * (MSS / cwnd) )\ncwnd全收完ack，整個cwnd才+1。\nFast Recovery ➡ sender重複收到3次相同ack時，可能是packet loss了，\n當收到三個重複的ACKReno就會認爲丢包了，并認定網絡中發生了擁塞。Reno會把當前的ssthresh的值設置爲當前cwnd的一半，但是并不會回到slow start階段，而是将cwnd設置爲（更新後的）ssthresh+3MSS，之後cwnd呈線性增長。\nTCP New Reno NewReno是基於Reno的改進版本，主要是改進了Fast Recovery。\nNewReno需要收到該窗口内所有數據包的确認後才會退出快速恢複狀态，從而更一步提高吞吐量。\nTCP SACK TCP SACK在TCP Reno基礎上增加了：\n選擇确認（Selective Acknowledgements，SACK） 選擇重傳（Selective Retransmission） SACK就是改變TCP的確認機制，最初的TCP隻確認當前已連續收到的數據，SACK則把亂序等信息會全部告訴對方，從而減少數據發送方重傳的盲目性。比如說序號1，2，3，5，7的數據收到了，那麼普通的ACK隻會確認序列號4，而SACK會把當前的5，7已經收到的信息在SACK選項裏面告知對端，從而提高性能，當使用SACK的時候，NewReno算法可以不使用，因爲SACK本身攜帶的信息就可以使得發送方有足夠的信息來知道需要重傳哪些包，而不需要重傳哪些包。\nTCP ECN ( Explicit Congestion Notification ) ECN = 11 = router已遇到擁塞狀況 當router將 IP paecket的 ECN 欄位設定為 11 時，receiver就會接到路徑中congestion的通知。ECN 使用 TCP header向傳送端指出網路正遇到擁塞狀況，同時向接收端指出傳送端已經從接收端接到擁塞指標，並且降低傳輸速率。\nreceiver sets ECE bit on receiver-to-sender ACK segment to notify sender of congestion\nTCP Vegas Vegas將RTT的增加作為congestion network的信號，RTT增加(cwnd減小)、RTT減小(cwnd增加)。 Vegas 通過比較實際throughput和expect throughput來調節cwnd的大小。\n期望吞吐量：Expected = cwnd / BaseRTT (RTT lowest)。 實際吞吐量：Actual = cwnd / RTT。 – Diff = ExpectedRate – ActualRate. – if Diff \u003c a . increase CongestionWindow linearly. – else if Diff \u003e b. decrease CongestionWindow linearly. – Else. leave CongestionWindow unchanged.\n網絡中 Vegas 與其它算法共存的情況下，基於丟包的擁塞控制算法會嘗試填滿網絡中的緩沖區，導緻 Vegas 計算的 RTT 增大，進而降低擁塞窗口，使得傳輸速度越來越慢，因此 Vegas 未能在 Internet 上普遍採用。\nAIMD: TCP sender收到ACK，成功cwnd + 1，失敗cwnd = cwnd / 2 (加性增，乘性減) Linear decrease in Vegas does not violate AIMD since it Happens before packets loss.\ntcp vegas / reno: Fast Retransmit ➡ Fast Recovery\nRandowm Early Detection (RED) Router所採許的一種策略，透過queue平均長度來detect congestion (AvgLen)，計算丢棄的概率來discard packet.\nRED is good at keeping avg. queue size steady. Thresholds are hard to determine.\nSequence Number TCP以向前參照確認來提供區段排序作業，每個資料在傳輸前都會先加以編號，到目的地工作站時，TCP會將這些區段重新組成完整的訊息。若資料中少了某個順序號碼，就會重傳該區段。區段傳出後，若在一段特定時間內沒有收到確認，也會要求重傳。\nUDP (best effort) DEF ➡ unreliable data transfer doesn’t provide ➡ reliability、flow control、congestion control、timing、 throughput guarantee、security、connection setup(handshaking)\nNetwork Layer Router examines header fields in all IP datagrams passing through it. Two key functions:\nforwarding ( data plane ): move packets from router’s input to appropriate router output. (怎麼轉送) routing ( control plane ): determine route taken by packets from source to destination. (路怎麼走) Router Architecture Longest prefix matching: when looking for forwarding table entry for given destination address, use longest address prefix that matches destination address.\nSwitching fabrics: transfer packet from input buffer to appropriate output buffer.\n隊頭阻塞（Head-of-line blocking或縮寫為HOL blocking）: 它的原因是一列的第一個數據包（隊頭）受阻而導緻整列數據包受阻。例如它有可能在緩存式輸入的交換機中出現，有可能因為傳輸順序錯亂而出現，亦有可能在HTTP流水線中有多個請求的情況下出現。\nIPv4 DEF ➡ 10.100.122.2被點分割為4個部分(Byte)，每個Byte = 8個bit，所以ipv4為32 bit address。 由 0開頭 到 127結尾的IP 是 A Class 由 128開頭 到 191結尾的IP是 B Class 由 192開頭 到 223結尾的則為 C Class\nPrivate Addresses Net ID、Host ID與Mask DEF ➡ 定義與切割網路用途，不同類型的IP會對應到有著不同的Net_ID。 A Class的IP / default mask : 前面1 byte數字 = Net ID，其餘三組 = Host ID / 255.0.0.0 B Class的IP / default mask: 前面2 byte數字 = Net ID，另兩組 = Host ID / 255.255.0.0 C Class的IP / default mask: 前面3 byte數字 = Net ID，剩下的一組 = Host / 255.255.255.0\nQ: 132.21.0.0, find the class, the block, and the range of the addresses? A: The class is B. The block has a Net_ID of 132.21. The addresses range from 132.21.0.0 to 132.21.255.255.\nSupernet (CIDR)與 Subnet Supernet ➡ 利用 Subnet Mask 重新定義較短的Net ID，借用Net ID後面幾個bit。 Subnet ➡ 利用 Subnet Mask 重新定義較長的Net ID，借用Host ID前面幾個bit，後面當作子網路的host address。 **Host_Id之mask切法: 看要幾個sub-net(切幾個1出去)，剩下0為該sub-net下可使用的ip address個數。 **右移 Net_Id之mask切法: 看要幾個class(切幾個0出去) 左移 205.16.37.24/29 : 8 addresses in the block. mask address: 255.255.255.X\ndestination AND mask = supe\trnet/subnet address.\n以network block跟network block之間為為單位進行分割。\nQ: 201.70.64.0, need 6 subnets. Design the subnets A: 8 -3 = 5(host_id_0s) subnets共8個. The number of address in each subnet is 32 = 代表1個subnet中(總共8個)，可容納32個不同的host ip address\nQ: We need to make a supernetwork out of 16 class C blocks. What is the supernet mask? A: 11111111 11111111 11110000 00000000 ( net_id左移4 bit )。\nDelivery and Routing of IP Packets Routing IP Packets Policy: Direct delivery ➡ Host-specific ➡ Network-specific ➡ Default indirect delivery: destination is in another network. If not present, use direct delivery. Host-specific: the entry in the destination field is host-specific address. If not present, destination field is network-specific address.\nnext-hop為該host到題目指定router的前一個router input ip address (到題目指定router)。\nIPv6 other changes from IPv4:\nchecksum: removed entirely to reduce processing time at each hop options: allowed, but outside of header, indicated by “Next Header” field ICMPv6: new version of ICMP IP Packet IP packet = header(控制資訊) + payload(資料本身) IP Header(最短20、最常60): 長度為4 Bytes的倍數 IP Payload(最短8、最常65515)\nHLEN = Header Length(佔4 bits)，紀錄此IP header的長度，HLEN的計算是以4 Bytes為基本單位。例如：HLEN欄位值為0101，即代表IP header的長度為5 ×4 = 20 Bytes，最長可達15×4 = 60 Bytes\nIdentification (16 bits) ➡ 若packet在傳輸過程中因為MTU的限制，導致傳輸過程中，將packet切割成幾個Fragments進行傳送，而因為每個IP packet到達目的裝置的先後順序可能與出發時的順序不同，因此接收端在進行packet重組時，便必須以Identification進行判斷IP packet原來的順序，以便能將屬於相同資料packet的fragment組合在一起。\nTotal Length (16 bits) ➡ 記錄整個packet的長度，包含IP header及IP所帶資料內容的總和。\nProtocol: which protocol to use.\nTime To Live（存活時間）➡ 佔8 Bits，記錄IP封包的「存活時間」，以限制IP封包在路由器之間轉送的次數。當IP封包每經過一部路由器時，路由器便會將Time to Live欄位值減1，當路由器收到此欄位值為1的IP封包時，便直接將之丟棄，不再轉送。\nFlag（封包切割旗標）➡ 佔3 Bits，主要對IP封包的切割提供控制訊息。 第1個bit: 未定義。 第2個bit: D 是否可以切割 第3個bit: M 0 = 最後fragmentation，1 = 尚有其他fragmentation。 If the M bit is 0, it means that there are no more fragments If the M bit is 1, it means that there is at least one more fragment\nIP Packet切割與重組 router中必須有IP packet的切割與重組機制，即是將過長的packet加以切割，以便能在MTU較小的網路上傳輸。切割後的IP封包，會由目的裝置重組，恢復成原來IP封包的模樣。\nIP 會將封包切割成多個較小的 (小於 MTU) fragment，使其能透過data-link傳輸 ， 目的端接收完所有fragment後，再將fragment進行重組。\nIP Fragmentation中IPv4 與 IPv6，其封包大小上限，分別為 65535 與 65575 Bytes。 遠遠超出了data-link的frame大小。\nMTU ( Maximum Transmission Unit ) DEF ➡ data-link中的MTU規範了frame的大小上限。 乙太網路 (Ethernet) 中的MTU: 1500 個位元組。\nICMP ( Internet Control Message Protocol ) ping是基於ICMP完成的。它的目的就是讓我們能夠檢測網路的連線狀況，也能確保連線的準確性，不過由於僅是控制訊息的傳遞並無詳細的指導，所以一般而言來源端並不處理該訊息\nARP ( Address Resolution Protocol ) DEF ➡ 已知IP address，求MAC address的protocol，利用「吼」的方式。發送一個broadcast packet，誰是這個IP誰來回答。switch會記住發來請求的sender的mac address，而switch學習到的結果稱為forwarding table(有過期時間)。\nRouting Protocol RIP ( Routing Information Protocol ) RIP version 2 supports CIDR. RIP uses the services of UDP on well-known port 520. OSPF ( Open Shortest Path First ) 由於OSPF路由協定的產生，是為了解決RIP路由協定的設備數量的問題，所以OSPF路由協定就沒有設備數量（Hop Count）的限制。會使用LSA的方式與其他路由器設備交換資訊，而不只是Routing Table的更新資訊而已。每一台路由器設備會自行計算屬於自己的「最佳網路路徑」，而這樣的資訊在各個路由器設備之間是不完全相同的。一個LSA封包中包含了介面的資訊、所使用的網路路徑評判標準（Metric）以及其他相關的資訊。當然，關於路徑的選擇，OSPF路由協定是採用最短路徑優先演算法（Shortest Path First Algorithm）。\n每一台路由器設備會自行計算屬於自己的「最佳網路路徑」，而這樣的資訊在各個路由器設備之間是不完全相同的。\nIn OSPF, all routers have the same link state database. OSPF packets are encapsulated in IP datagrams. Autonomous System: 由一個單位管理，例如 ISP、超級大學校、大公司等等，什麼都大的組織。每個 AS 裡面的路由表都自己管，隻要事先宣告自己持有什麼網段就行了。\nBGP ( Border Gateway Protocol ) routing among the ISPs ，BGP會自動決定各種狀態下的router，決定東西從哪邊走，該在哪邊停(外部網路下)。 維護router table來實現AS之間的可達性。\nSimple Network Management Protocol (SNMP ) = 簡單網路管理協定一方面不僅可使用於網路設備之日常維運作業，亦可提供網路維運人員即時監控設備異常事件發生及因應處理。\n其他 HUB(集線器) DEF ➡ 完全在physical layer工作，它會將自己收到的每一個byte，都複製到其他port上去。 缺: 不管某個介面是否需要，所有的bit都會被發送出去，然後讓主機來判斷是不是需要。\ndigital subscriber line (DSL): network line and telephone line to central office DSLAM. cable network: 共享頻寬，需要分散式的多重存取協定，用來協調傳輸，避免碰撞。\n大部分packet switch使用store-and-forward transmission (儲存轉送傳輸)，router必須先接收到整個封包，才開始將第一個位元傳輸到外部連結。\nPacket Switching vs Circuit Switching: 網際網路使用此，資源不會被保留(queueing delay loss)/資料會被預約保留 queueing delay: packet arrival rate to link (temporarily) exceeds output link capacity.\n",
+  "wordCount" : "6474",
+  "inLanguage": "en",
+  "image":"https://i.imgur.com/Z6BvqSJ.png","datePublished": "2023-06-15T00:00:00Z",
+  "dateModified": "2023-06-15T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Jonathan"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://jonathan-tw.github.io/posts/%E8%AA%B2%E7%A8%8B%E7%AD%86%E8%A8%98ntust-network-communication-protocols/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jonathan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jonathan-tw.github.io/img/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://jonathan-tw.github.io" accesskey="h" title="Jonathan&#39;s Blog (Alt + H)">
+            <img src="https://jonathan-tw.github.io/img/favicon.ico" alt="logo" aria-label="logo"
+                 height="35">Jonathan&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://jonathan-tw.github.io/" title="🏠 Home">
+                <span>🏠 Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://jonathan-tw.github.io/posts" title="📚 Posts">
+                <span>📚 Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://jonathan-tw.github.io/tags" title="🧩 Tags">
+                <span>🧩 Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://jonathan-tw.github.io/archives/" title="📅 Archive">
+                <span>📅 Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://jonathan-tw.github.io/search" title="🔍 Search (Alt &#43; /)" accesskey=/>
+                <span>🔍 Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coding-interview.netlify.app/" title="👨‍💻 Jonathan&#39;s Coding Interview">
+                <span>👨‍💻 Jonathan&#39;s Coding Interview</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://jonathan-tw.github.io">Home</a>&nbsp;»&nbsp;<a href="https://jonathan-tw.github.io/posts/">📚 Posts</a></div>
+            <h1 class="post-title">
+                (課程筆記)(NTUST) Network Communication Protocols
+            </h1>
+            <div class="post-meta">Created:&nbsp;<span title='2023-06-15 00:00:00 +0000 UTC'>2023-06-15</span>&nbsp;|&nbsp;Upated:&nbsp;2023-06-15&nbsp;|&nbsp;Count words:&nbsp;6474&nbsp;|&nbsp;Reading time:&nbsp;13 mins
+
+
+
+                &nbsp;|&nbsp;Tags: &nbsp;
+                <ul class="post-tags-meta">
+                    <a href="https://jonathan-tw.github.io/tags/ntust/">NTUST</a>
+                    <a href="https://jonathan-tw.github.io/tags/%E8%AA%B2%E7%A8%8B%E7%AD%86%E8%A8%98/">、課程筆記</a>
+                </ul>
+                
+
+            
+            </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img loading="lazy" src="https://i.imgur.com/Z6BvqSJ.png" alt="">
+        
+</figure>
+        <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#layered-outline" aria-label="Layered Outline">Layered Outline</a><ul>
+                        
+                <li>
+                    <a href="#tcpip-5-layer" aria-label="TCP/IP 5 Layer">TCP/IP 5 Layer</a></li>
+                <li>
+                    <a href="#isoosi-7-layer" aria-label="ISO/OSI 7 Layer">ISO/OSI 7 Layer</a></li>
+                <li>
+                    <a href="#openflow-flow-table-entries" aria-label="OpenFlow: Flow Table Entries">OpenFlow: Flow Table Entries</a></li></ul>
+                </li>
+                <li>
+                    <a href="#application-layer" aria-label="Application Layer">Application Layer</a><ul>
+                        
+                <li>
+                    <a href="#http--hyper-text-transfer-protocol-" aria-label="HTTP ( Hyper Text Transfer Protocol )">HTTP ( Hyper Text Transfer Protocol )</a></li>
+                <li>
+                    <a href="#electronic-mail" aria-label="Electronic Mail">Electronic Mail</a><ul>
+                        
+                <li>
+                    <a href="#smtp--simple-mail-transfer-protocol-" aria-label="SMTP ( Simple Mail Transfer Protocol )">SMTP ( Simple Mail Transfer Protocol )</a></li></ul>
+                </li>
+                <li>
+                    <a href="#dns--domain-name-system-" aria-label="DNS ( Domain Name System )">DNS ( Domain Name System )</a></li>
+                <li>
+                    <a href="#video-streaming-and-content-distribution-networks-cdns" aria-label="video streaming and content distribution networks (CDNs)">video streaming and content distribution networks (CDNs)</a></li>
+                <li>
+                    <a href="#dhcp--dynamic-host-configuration-protocol-" aria-label="DHCP ( Dynamic Host Configuration Protocol ）">DHCP ( Dynamic Host Configuration Protocol ）</a></li>
+                <li>
+                    <a href="#sockets" aria-label="Sockets">Sockets</a></li></ul>
+                </li>
+                <li>
+                    <a href="#transport-layer" aria-label="Transport Layer">Transport Layer</a><ul>
+                        
+                <li>
+                    <a href="#tcp" aria-label="TCP">TCP</a><ul>
+                        
+                <li>
+                    <a href="#tcp-congestion-control" aria-label="TCP congestion control">TCP congestion control</a></li>
+                <li>
+                    <a href="#tcp-new-reno" aria-label="TCP New Reno">TCP New Reno</a></li>
+                <li>
+                    <a href="#tcp-sack" aria-label="TCP SACK">TCP SACK</a></li>
+                <li>
+                    <a href="#tcp-ecn--explicit-congestion-notification-" aria-label="TCP ECN ( Explicit Congestion Notification )">TCP ECN ( Explicit Congestion Notification )</a></li>
+                <li>
+                    <a href="#tcp--vegas" aria-label="TCP  Vegas">TCP  Vegas</a></li>
+                <li>
+                    <a href="#randowm-early-detection-red" aria-label="Randowm Early Detection (RED)">Randowm Early Detection (RED)</a></li>
+                <li>
+                    <a href="#sequence-number" aria-label="Sequence Number">Sequence Number</a></li></ul>
+                </li>
+                <li>
+                    <a href="#udp-best-effort" aria-label="UDP (best effort)">UDP (best effort)</a></li></ul>
+                </li>
+                <li>
+                    <a href="#network-layer" aria-label="Network Layer">Network Layer</a><ul>
+                        
+                <li>
+                    <a href="#router-architecture" aria-label="Router Architecture">Router Architecture</a></li>
+                <li>
+                    <a href="#ipv4" aria-label="IPv4">IPv4</a><ul>
+                        
+                <li>
+                    <a href="#private--addresses" aria-label="Private  Addresses">Private  Addresses</a></li>
+                <li>
+                    <a href="#net-idhost-id%e8%88%87mask" aria-label="Net ID、Host ID與Mask">Net ID、Host ID與Mask</a></li>
+                <li>
+                    <a href="#supernet-cidr%e8%88%87-subnet" aria-label="Supernet (CIDR)與 Subnet">Supernet (CIDR)與 Subnet</a></li>
+                <li>
+                    <a href="#delivery-and-routing-of-ip-packets" aria-label="Delivery and Routing of IP Packets">Delivery and Routing of IP Packets</a></li></ul>
+                </li>
+                <li>
+                    <a href="#ipv6" aria-label="IPv6">IPv6</a></li>
+                <li>
+                    <a href="#ip-packet" aria-label="IP Packet">IP Packet</a></li>
+                <li>
+                    <a href="#ip-packet%e5%88%87%e5%89%b2%e8%88%87%e9%87%8d%e7%b5%84" aria-label="IP Packet切割與重組">IP Packet切割與重組</a><ul>
+                        
+                <li>
+                    <a href="#mtu--maximum-transmission-unit-" aria-label="MTU ( Maximum Transmission Unit )">MTU ( Maximum Transmission Unit )</a></li></ul>
+                </li>
+                <li>
+                    <a href="#icmp--internet-control-message-protocol-" aria-label="ICMP ( Internet Control Message Protocol )">ICMP ( Internet Control Message Protocol )</a></li>
+                <li>
+                    <a href="#arp--address-resolution-protocol-" aria-label="ARP ( Address Resolution Protocol )">ARP ( Address Resolution Protocol )</a></li>
+                <li>
+                    <a href="#routing-protocol" aria-label="Routing Protocol">Routing Protocol</a><ul>
+                        
+                <li>
+                    <a href="#rip--routing-information-protocol-" aria-label="RIP ( Routing Information Protocol )">RIP ( Routing Information Protocol )</a></li>
+                <li>
+                    <a href="#ospf--open-shortest-path-first-" aria-label="OSPF ( Open Shortest Path First )">OSPF ( Open Shortest Path First )</a></li>
+                <li>
+                    <a href="#bgp--border-gateway-protocol-" aria-label="BGP ( Border Gateway Protocol )">BGP ( Border Gateway Protocol )</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%85%b6%e4%bb%96" aria-label="其他">其他</a><ul>
+                        
+                <li>
+                    <a href="#hub%e9%9b%86%e7%b7%9a%e5%99%a8" aria-label="HUB(集線器)">HUB(集線器)</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+            const id = encodeURI(element.getAttribute('id')).toLowerCase();
+            if (element === activeElement){
+                document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+            } else {
+                document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+            }
+        })
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        
+        <div class="post-content"><h2 id="layered-outline">Layered Outline<a hidden class="anchor" aria-hidden="true" href="#layered-outline">#</a></h2>
+<p>What&rsquo;s  a protocol?</p>
+<p>protocols define format, order of messages sent and received among network entities, and actions taken on message transmission, receipt</p>
+<h3 id="tcpip-5-layer">TCP/IP 5 Layer<a hidden class="anchor" aria-hidden="true" href="#tcpip-5-layer">#</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application Layer</td>
+<td>HTTP、DHCP、RPC、P2P、DNS</td>
+</tr>
+<tr>
+<td>Transport Layer</td>
+<td>UDP、TCP</td>
+</tr>
+<tr>
+<td>Network Layer (IP)</td>
+<td>IP、ICMP、OSPF、BGP</td>
+</tr>
+<tr>
+<td>Data-link Layer  (MAC)</td>
+<td>MAC、VLAN、STP</td>
+</tr>
+<tr>
+<td>Physical Layer</td>
+<td>網路挑線</td>
+</tr>
+</tbody>
+</table>
+<h3 id="isoosi-7-layer">ISO/OSI 7 Layer<a hidden class="anchor" aria-hidden="true" href="#isoosi-7-layer">#</a></h3>
+<img src="https://i.imgur.com/Iuf6KK5.png" style="zoom:70%"/>
+<p> Presentation: allow applications to interpret meaning of data.
+example: encryption, compression, machine-specific conventions.
+ Session: synchronization, checkpointing, recovery of data exchange.</p>
+<p><strong>只要是在網絡上跑的包，都是完整的。可以有下層沒上層，絕對不可能有上層沒下層。</strong>
+IP address: 一個網卡在網絡世界的通訊地址，相當於我們現實世界的門牌號碼。
+MAC address: 身份證，區域網內通信用。</p>
+<ol>
+<li>Mac在data link layer使用，IP在network layer使用，IP位置在區域網內可能發生改變，唯一性的MAC需要。</li>
+<li>mac位置全球唯一，固化在網卡裡。OS識別出來的mac位置可以更改，他是一個string，我們常說修改的mac指的是修改電腦註冊表中的紀錄。</li>
+</ol>
+<img src="https://i.imgur.com/cKtLr3c.png" style="zoom:50%"/>
+<h3 id="openflow-flow-table-entries">OpenFlow: Flow Table Entries<a hidden class="anchor" aria-hidden="true" href="#openflow-flow-table-entries">#</a></h3>
+<p>operates between controller, switch.</p>
+<img src="https://i.imgur.com/umFrnnf.png" style="zoom:50%"/>
+<h2 id="application-layer">Application Layer<a hidden class="anchor" aria-hidden="true" href="#application-layer">#</a></h2>
+<h3 id="http--hyper-text-transfer-protocol-">HTTP ( Hyper Text Transfer Protocol )<a hidden class="anchor" aria-hidden="true" href="#http--hyper-text-transfer-protocol-">#</a></h3>
+<p>Uses TCP; stateless.
+non-persistent HTTP ➡ at most one object sent over TCP connection,connection then closed.
+persistent HTTP ➡ multiple objects can be sent over single TCP connection between client, server.
+HTTP response time = 2RTT  (建立TCP連線、請求和接收物件)+ file transmission time</p>
+<p>server希望能識別使用者身分提供不同的內容，因HTTP是stateless，所以HTTP使用<strong>cookies</strong>。</p>
+<img src="https://i.imgur.com/miWl6v4.png" style="zoom:50%"/>
+<blockquote>
+<p>結合cookie和user所提供的帳號資訊，website能獲得大量使用者的相關資料，有可能販賣這些資訊(安全疑慮)</p>
+</blockquote>
+<p>Web cache = proxy server ( server for original requesting client、client to origin server )</p>
+<ol>
+<li>proxy servers reduce response time for client request.</li>
+<li>proxy servers reduce traffic on an institution&rsquo;s access link.</li>
+</ol>
+<h3 id="electronic-mail">Electronic Mail<a hidden class="anchor" aria-hidden="true" href="#electronic-mail">#</a></h3>
+<h4 id="smtp--simple-mail-transfer-protocol-">SMTP ( Simple Mail Transfer Protocol )<a hidden class="anchor" aria-hidden="true" href="#smtp--simple-mail-transfer-protocol-">#</a></h4>
+<p>between mail servers to send email messages.</p>
+<ol>
+<li>TCP /port 25</li>
+<li>use persistent connections.</li>
+</ol>
+<img src="https://i.imgur.com/agvpnGv.png" style="zoom:50%"/>
+<h3 id="dns--domain-name-system-">DNS ( Domain Name System )<a hidden class="anchor" aria-hidden="true" href="#dns--domain-name-system-">#</a></h3>
+<p>A <em>distributed</em>, hierarchical database. Translate host name to IP address. ( UDP port/53 )</p>
+<blockquote>
+<p>root DNS server、 TLD DNS server ( .com/.org/.edu/.gov )、 authoritative DNS server /au.thor.i.ta.tive/
+Local DNS name server: each ISP (residential ISP, company, university) has one = DNS caching</p>
+</blockquote>
+<img src="https://i.imgur.com/Kb8VW2I.png" style="zoom:50%"/>
+<h3 id="video-streaming-and-content-distribution-networks-cdns">video streaming and content distribution networks (CDNs)<a hidden class="anchor" aria-hidden="true" href="#video-streaming-and-content-distribution-networks-cdns">#</a></h3>
+<img src="https://i.imgur.com/c7Lhg8t.png" style="zoom:50%"/>
+<img src="https://i.imgur.com/OlnmqkL.png" style="zoom:50%"/>
+<h3 id="dhcp--dynamic-host-configuration-protocol-">DHCP ( Dynamic Host Configuration Protocol ）<a hidden class="anchor" aria-hidden="true" href="#dhcp--dynamic-host-configuration-protocol-">#</a></h3>
+<p>主要是用來提供在TCP/ IP網路上的主機可以自動的分配到IP及所需要的相關設定。
+DHCP可分成兩個部分來看，一個是DHCP伺服器端，另一個是DHCP用戶端。</p>
+<p>DHCP server有一個集中式的管理程式，主要負責設定網路各主機上所需要的IP資訊，並
+提供給Client索取使用。DHCP用戶端是負責向DHCP伺服器索取所需要之相關IP資訊，並將資料註冊到該系統中。</p>
+<img src="https://i.imgur.com/y3WGmHf.png" style="zoom:50%" />
+<img src="https://i.imgur.com/ieOEiwi.png" style="zoom:70%"/>
+<h3 id="sockets">Sockets<a hidden class="anchor" aria-hidden="true" href="#sockets">#</a></h3>
+<img src="https://i.imgur.com/uXzQjOx.png" style="zoom:50%"/>
+<img src="https://i.imgur.com/0YpA6RX.png" style="zoom:50%"/>
+<h2 id="transport-layer">Transport Layer<a hidden class="anchor" aria-hidden="true" href="#transport-layer">#</a></h2>
+<p>what transport service does an app need?</p>
+<ol>
+<li>data integrity</li>
+<li>timing</li>
+<li>throughput</li>
+<li>security</li>
+</ol>
+<h3 id="tcp">TCP<a hidden class="anchor" aria-hidden="true" href="#tcp">#</a></h3>
+<p>DEF ➡ reliable transport、flow control、connection-oriented
+doesn&rsquo;t provide ➡ timing, minimum throughput guarantee, security</p>
+<blockquote>
+<p>TCP的增強特性 Fast Retransmit &amp; Recovery （FRR），當receiver發現丟包時，發送重複的ACK給對方，當sender收到3個重複的ack時，就確人此packet為loss，馬上進行重傳(不需等待time out)</p>
+</blockquote>
+<ol>
+<li>為了在不可靠的網路介面上建立可靠的傳送資料服務，TCP必須解決可靠性，flow control的問題，而且必須能為上層的應用程式來提供多個埠口，用來同時為多個應用程式提供資料，同時，TCP必須解決連接的問題，這樣子的話，TCP才是個可靠的通訊協定，而最後也要克服通訊安全的問題。</li>
+<li>TCP連接是可靠的，而且保証了傳送區段的順序，保証順序的能力是用一個序號來達成的，區段內也包括一個序列號，表示接收方準備好這個序號的區段，在TCP協定傳送一個區段時，它會同時把這個區段放入重新發送的序列中，同時啟動計數器，如果收到了確認訊息，就會把重送的區段序列刪除，如果超過計數時間時，就會將這個區段重送。</li>
+</ol>
+<p>Sliding Window: data flow control的技巧，它要求sender host在傳送一定量的data以後，必須接收對放的確認。
+Window Size是由destination決定，而且會依網路流量調整並非一成不變(maybe congestion)，The destination can send an acknowledgment at any time。</p>
+<p>TCP socket identified by 4-tuple:</p>
+<p>• source IP address
+• source port number
+• dest IP address
+• dest port number</p>
+<blockquote>
+<p>Demux (由下到上傳到socket): receiver uses all four values to direct segment to appropriate socket.
+each socket identified by its own 4-tuple. (不同的source ip address or port number，就會轉交給兩份不同的socket)</p>
+</blockquote>
+<img src="https://i.imgur.com/N8Sfxn3.jpg" style="zoom:30%"/>
+<img src="https://i.imgur.com/GKKvogB.png" style="zoom:50%"/>
+<img src="https://i.imgur.com/kwWG2nk.png" style="zoom:50%"/>
+<h4 id="tcp-congestion-control">TCP congestion control<a hidden class="anchor" aria-hidden="true" href="#tcp-congestion-control">#</a></h4>
+<p>flow control ➡ receiver 控制sender別送太多 (Receive Window)</p>
+<p>cwnd (Congestion Window, bytes) ➡ 限制TCP sender資料送入網路的速率，為了避免congestion，值應該都&lt; cwnd。</p>
+<blockquote>
+<p>rate = cwnd (量) / RTT bytes/sec
+ssthresh = cwnd / 2</p>
+</blockquote>
+<p>MSS: ( Maximum Segment Size ) ➡ MSS是TCP數據包次能夠傳輸的最大數據分段。建立連線之前雙方講好，因TCP為雙向連線，所以兩邊傳遞之最大值可以不一樣</p>
+<blockquote>
+<p>爲了達到最佳的傳輸效能，TCP協議在建立連接的時候通常要協商雙方的MSS值，這個值TCP協議在實現的時候往往用MTU值代替（需要減去IP數據包包頭的大小20Bytes和TCP數據段的包頭20Bytes）所以一般MSS值1460，通訊雙方會根據雙方提供的MSS值得最小值确定爲這次連接的最大MSS值。</p>
+</blockquote>
+<hr>
+<p>Slow Start ➡ initial.cwnd = 1MSS，每當receiver得到一次確認後就增加 1 MSS (各將cwnd+1，double cwnd)， 此一過程造成每回RTT中傳送速率倍增，因此TCP的傳送速率從低速開始，接下來會以指數性地成長。</p>
+<blockquote>
+<p>指數成長 cwnd = cwnd + 1 出2回2 出4回4 出8回8，傳的單位是per ack，每次回來幾個ack就+1幾次。</p>
+</blockquote>
+<p>Success Event</p>
+<ol>
+<li>increase exponentially (new ack)</li>
+<li>Slow start to congestion avoidance, cwnd gets to 1/2 of its value before timeout (when cwnd &gt;= ssthresh)</li>
+</ol>
+<p>Loss Event ( timeout )</p>
+<ol>
+<li>cut cwnd = 1 MSS.</li>
+<li>ssthresh = cwnd / 2</li>
+</ol>
+<p>Congestion Avoidance ➡ 線性成長 cwnd = cwnd+1 (cwnd = cwnd + MSS * (MSS / cwnd) )</p>
+<blockquote>
+<p>cwnd全收完ack，整個cwnd才+1。</p>
+</blockquote>
+<p>Fast Recovery ➡ sender重複收到3次相同ack時，可能是packet loss了，</p>
+<img src="https://i.imgur.com/BJzR8Ze.png" style="zoom:80%"/>
+<img src="https://i.imgur.com/tLyhoxp.png" style="zoom:80%"/>
+<blockquote>
+<p>當收到三個重複的ACKReno就會認爲丢包了，并認定網絡中發生了擁塞。Reno會把當前的<code>ssthresh</code>的值設置爲當前<code>cwnd</code>的一半，但是并不會回到<code>slow start</code>階段，而是将<code>cwnd</code>設置爲（更新後的）<code>ssthresh</code>+3MSS，之後<code>cwnd</code>呈線性增長。</p>
+</blockquote>
+<img src="https://i.imgur.com/kHhSKv1.png" style="zoom:100%"/>
+<img src="https://i.imgur.com/J2nTEZo.png" style="zoom:50%"/>
+<h4 id="tcp-new-reno">TCP New Reno<a hidden class="anchor" aria-hidden="true" href="#tcp-new-reno">#</a></h4>
+<p><strong>NewReno</strong>是基於<strong>Reno</strong>的改進版本，主要是改進了Fast Recovery。</p>
+<blockquote>
+<p>NewReno需要收到該窗口内所有數據包的确認後才會退出快速恢複狀态，從而更一步提高吞吐量。</p>
+</blockquote>
+<h4 id="tcp-sack">TCP SACK<a hidden class="anchor" aria-hidden="true" href="#tcp-sack">#</a></h4>
+<p>TCP SACK在TCP Reno基礎上增加了：</p>
+<ol>
+<li>選擇确認（Selective Acknowledgements，SACK）</li>
+<li>選擇重傳（Selective Retransmission）</li>
+</ol>
+<blockquote>
+<p>SACK就是改變TCP的確認機制，最初的TCP隻確認當前已連續收到的數據，SACK則把亂序等信息會全部告訴對方，從而減少數據發送方重傳的盲目性。比如說序號1，2，3，5，7的數據收到了，那麼普通的ACK隻會確認序列號4，而SACK會把當前的5，7已經收到的信息在SACK選項裏面告知對端，從而提高性能，當使用SACK的時候，NewReno算法可以不使用，因爲SACK本身攜帶的信息就可以使得發送方有足夠的信息來知道需要重傳哪些包，而不需要重傳哪些包。</p>
+</blockquote>
+<h4 id="tcp-ecn--explicit-congestion-notification-">TCP ECN ( Explicit Congestion Notification )<a hidden class="anchor" aria-hidden="true" href="#tcp-ecn--explicit-congestion-notification-">#</a></h4>
+<p>ECN = 11  = router已遇到擁塞狀況
+當router將 IP paecket的 ECN 欄位設定為 11 時，receiver就會接到路徑中congestion的通知。ECN 使用 TCP header向傳送端指出網路正遇到擁塞狀況，同時向接收端指出傳送端已經從接收端接到擁塞指標，並且降低傳輸速率。</p>
+<blockquote>
+<p>receiver sets ECE bit on receiver-to-sender ACK segment to notify sender of congestion</p>
+</blockquote>
+<img src="https://i.imgur.com/On4PaRd.png"  style="zoom:70%" />
+<h4 id="tcp--vegas">TCP  Vegas<a hidden class="anchor" aria-hidden="true" href="#tcp--vegas">#</a></h4>
+<p>Vegas將RTT的增加作為congestion network的信號，RTT增加(cwnd減小)、RTT減小(cwnd增加)。
+Vegas 通過比較實際throughput和expect throughput來調節cwnd的大小。</p>
+<blockquote>
+<p>期望吞吐量：Expected = cwnd / BaseRTT (RTT lowest)。
+實際吞吐量：Actual = cwnd / RTT。
+– Diff  =  ExpectedRate – ActualRate.
+– if Diff &lt; a . increase CongestionWindow linearly.
+– else if Diff &gt; b. decrease CongestionWindow linearly.
+– Else. leave CongestionWindow unchanged.</p>
+</blockquote>
+<p>網絡中 Vegas 與其它算法共存的情況下，基於丟包的擁塞控制算法會嘗試填滿網絡中的緩沖區，導緻 Vegas 計算的 RTT 增大，進而降低擁塞窗口，使得傳輸速度越來越慢，因此 Vegas 未能在 Internet 上普遍採用。</p>
+<blockquote>
+<p>AIMD: TCP sender收到ACK，成功cwnd + 1，失敗cwnd = cwnd / 2 (加性增，乘性減)
+Linear decrease in Vegas does not violate AIMD since it Happens before packets loss.</p>
+</blockquote>
+<blockquote>
+<p>tcp vegas / reno: Fast Retransmit  ➡ Fast Recovery</p>
+</blockquote>
+<h4 id="randowm-early-detection-red">Randowm Early Detection (RED)<a hidden class="anchor" aria-hidden="true" href="#randowm-early-detection-red">#</a></h4>
+<p>Router所採許的一種策略，透過queue平均長度來detect congestion (AvgLen)，計算丢棄的概率來discard packet.</p>
+<img src="https://i.imgur.com/WVJQTkP.png" style="zoom:70%"/>
+<img src="https://i.imgur.com/Ha1ZXXs.png" style="zoom:60%"/>
+<img src="https://i.imgur.com/oocRWbk.png" style="zoom:80%"/>
+<blockquote>
+<p>RED is good at keeping avg. queue size steady.
+Thresholds are hard to determine.</p>
+</blockquote>
+<h4 id="sequence-number">Sequence Number<a hidden class="anchor" aria-hidden="true" href="#sequence-number">#</a></h4>
+<p>TCP以向前參照確認來提供區段排序作業，每個資料在傳輸前都會先加以編號，到目的地工作站時，TCP會將這些區段重新組成完整的訊息。若資料中少了某個順序號碼，就會重傳該區段。區段傳出後，若在一段特定時間內沒有收到確認，也會要求重傳。</p>
+<h3 id="udp-best-effort">UDP (best effort)<a hidden class="anchor" aria-hidden="true" href="#udp-best-effort">#</a></h3>
+<p>DEF ➡ unreliable data transfer
+doesn&rsquo;t provide ➡ reliability、flow control、congestion control、timing、
+throughput guarantee、security、connection setup(handshaking)</p>
+<h2 id="network-layer">Network Layer<a hidden class="anchor" aria-hidden="true" href="#network-layer">#</a></h2>
+<p>Router examines header fields in all IP datagrams passing through it.
+Two key functions:</p>
+<ol>
+<li>forwarding ( data plane ): move packets from router&rsquo;s input to appropriate router output. (怎麼轉送)</li>
+<li>routing ( control plane ): determine route taken by packets from source to destination. (路怎麼走)</li>
+</ol>
+<img src="https://i.imgur.com/TUdvyG3.png" style="zoom:50%"/>
+<img src="https://i.imgur.com/0EVHx6Y.png" style="zoom:50%"/>
+<h3 id="router-architecture">Router Architecture<a hidden class="anchor" aria-hidden="true" href="#router-architecture">#</a></h3>
+<img src="https://i.imgur.com/ZmutSME.png" style="zoom:50%"/>
+<img src="https://i.imgur.com/9VyyBG5.png" style="zoom:50%"/>
+<img src="https://i.imgur.com/pAhecWV.png" style="zoom:50%"/>
+<img src="https://i.imgur.com/e8RjlmX.png" style="zoom:50%"/>
+<p>Longest prefix matching: when looking for forwarding table entry for given destination address, use longest address prefix that matches destination address.</p>
+<p>Switching fabrics: transfer packet from input buffer to appropriate output buffer.</p>
+<blockquote>
+<p><strong>隊頭阻塞</strong>（<strong>Head-of-line blocking</strong>或縮寫為<strong>HOL blocking</strong>）: 它的原因是一列的第一個數據包（隊頭）受阻而導緻整列數據包受阻。例如它有可能在緩存式輸入的交換機中出現，有可能因為傳輸順序錯亂而出現，亦有可能在HTTP流水線中有多個請求的情況下出現。</p>
+</blockquote>
+<h3 id="ipv4">IPv4<a hidden class="anchor" aria-hidden="true" href="#ipv4">#</a></h3>
+<p>DEF ➡ 10.100.122.2被點分割為4個部分(Byte)，每個Byte = 8個bit，所以ipv4為32 bit address。
+由 0開頭 到 127結尾的IP 是 A Class
+由 128開頭 到 191結尾的IP是 B Class
+由 192開頭 到 223結尾的則為 C Class</p>
+<img src="https://i.imgur.com/jkG1FsF.png" style="zoom:50%"/>
+<h4 id="private--addresses">Private  Addresses<a hidden class="anchor" aria-hidden="true" href="#private--addresses">#</a></h4>
+<img src="https://i.imgur.com/GLVNUS1.png" style="zoom:40%"/>
+<h4 id="net-idhost-id與mask">Net ID、Host ID與Mask<a hidden class="anchor" aria-hidden="true" href="#net-idhost-id與mask">#</a></h4>
+<p>DEF ➡ 定義與切割網路用途，不同類型的IP會對應到有著不同的Net_ID。
+A Class的IP / default mask : 前面1 byte數字 = Net ID，其餘三組 = Host ID  / 255.0.0.0
+B Class的IP / default mask: 前面2 byte數字 = Net ID，另兩組 = Host ID / 255.255.0.0
+C Class的IP / default mask: 前面3 byte數字 = Net ID，剩下的一組 = Host / 255.255.255.0</p>
+<img src="https://i.imgur.com/qdPHFlF.png" style="zoom:50%"/>
+<p>Q: 132.21.0.0, find the class, the block, and the range of the addresses?
+A: The class is B. <strong>The block has a Net_ID of 132.21. The addresses range from 132.21.0.0 to 132.21.255.255.</strong></p>
+<h4 id="supernet-cidr與-subnet">Supernet (CIDR)與 Subnet<a hidden class="anchor" aria-hidden="true" href="#supernet-cidr與-subnet">#</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Supernet ➡ 利用 Subnet Mask 重新定義<strong>較短</strong>的Net ID，借用Net ID後面幾個bit。</td>
+</tr>
+<tr>
+<td>Subnet ➡ 利用 Subnet Mask 重新定義<strong>較長</strong>的Net ID，借用Host ID前面幾個bit，後面當作子網路的host address。</td>
+</tr>
+</tbody>
+</table>
+<p>**Host_Id之mask切法: 看要幾個sub-net(切幾個1出去)，剩下0為該sub-net下可使用的ip address個數。 **右移
+Net_Id之mask切法: 看要幾個class(切幾個0出去) 左移
+205.16.37.24/<strong>29</strong> : 8 addresses in the block.  mask address: 255.255.255.X</p>
+<p>destination AND mask  = supe	rnet/subnet address.</p>
+<p>以network block跟network block之間為為單位進行分割。</p>
+<img src="https://i.imgur.com/kWHx1tf.png" style="zoom:50%"/> 
+<p>Q: 201.70.64.0, need 6 subnets. Design the subnets
+A:  8 -3 = 5(host_id_0s) subnets共8個.
+The number of address in each subnet is 32 = 代表1個subnet中(總共8個)，可容納32個不同的host ip address</p>
+<p>Q: We need to make a supernetwork out of 16 class C blocks. What is the supernet mask?
+A: 11111111 11111111 11110000 00000000  ( net_id左移4 bit )。</p>
+<h4 id="delivery-and-routing-of-ip-packets">Delivery and Routing of IP Packets<a hidden class="anchor" aria-hidden="true" href="#delivery-and-routing-of-ip-packets">#</a></h4>
+<p>Routing IP Packets Policy:
+Direct delivery ➡ Host-specific ➡ Network-specific ➡ Default
+<strong>indirect delivery</strong>: destination is in another network. If not present, use direct delivery.
+<strong>Host-specific</strong>: the entry in the destination field is host-specific address.
+If not present, destination field is network-specific address.</p>
+<p><strong>next-hop為該host到題目指定router的前一個router input ip address (到題目指定router)。</strong></p>
+<img src="https://i.imgur.com/XdTAEcM.png" style="zoom:40%"/>
+<img src="https://i.imgur.com/soMMIce.png" style="zoom:40%"/>
+<h3 id="ipv6">IPv6<a hidden class="anchor" aria-hidden="true" href="#ipv6">#</a></h3>
+<p>other changes from IPv4:</p>
+<ol>
+<li>checksum: removed entirely to reduce processing time at each hop</li>
+<li>options: allowed, but outside of header, indicated by “Next Header” field</li>
+<li>ICMPv6: new version of ICMP</li>
+</ol>
+<h3 id="ip-packet">IP Packet<a hidden class="anchor" aria-hidden="true" href="#ip-packet">#</a></h3>
+<p>IP packet = header(控制資訊) + payload(資料本身)
+IP Header(最短20、最常60): 長度為4 Bytes的倍數
+IP Payload(最短8、最常65515)</p>
+<img src="https://i.imgur.com/AcBYYcQ.png" style=zoom:50% />
+<p>HLEN = Header Length(佔4 bits)，<strong>紀錄此IP header的長度，HLEN的計算是以4 Bytes為基本單位</strong>。例如：HLEN欄位值為0101，即代表IP header的長度為5 ×4 = 20 Bytes，最長可達15×4 = 60 Bytes</p>
+<p>Identification (16 bits) ➡ 若packet在傳輸過程中因為MTU的限制，導致傳輸過程中，將packet切割成幾個Fragments進行傳送，而因為每個IP packet到達目的裝置的先後順序可能與出發時的順序不同，因此接收端在進行packet重組時，便必須以Identification進行判斷IP packet原來的順序，以便能將屬於相同資料packet的fragment組合在一起。</p>
+<p>Total Length  (16 bits) ➡ 記錄整個packet的長度，包含IP header及IP所帶資料內容的總和。</p>
+<p>Protocol: which protocol to use.</p>
+<p>Time To Live（存活時間）➡  佔8 Bits，記錄IP封包的「存活時間」，以限制IP封包在路由器之間轉送的次數。當IP封包每經過一部路由器時，路由器便會將Time to Live欄位值減1，當路由器收到此欄位值為1的IP封包時，便直接將之丟棄，不再轉送。</p>
+<p>Flag（封包切割旗標）➡ 佔3 Bits，主要對IP封包的切割提供控制訊息。
+第1個bit: 未定義。
+第2個bit: D 是否可以切割
+第3個bit: M 0 = 最後fragmentation，1 = 尚有其他fragmentation。
+If the M bit is 0, it means that there are no more fragments
+If the M bit is 1, it means that there is at least one more fragment</p>
+<h3 id="ip-packet切割與重組">IP Packet切割與重組<a hidden class="anchor" aria-hidden="true" href="#ip-packet切割與重組">#</a></h3>
+<p>router中必須有IP packet的切割與重組機制，即是將過長的packet加以切割，以便能在MTU較小的網路上傳輸。切割後的IP封包，會由目的裝置重組，恢復成原來IP封包的模樣。</p>
+<blockquote>
+<p>IP 會將封包切割成多個較小的 (小於 MTU) fragment，使其能透過data-link傳輸 ，
+目的端接收完所有fragment後，再將fragment進行重組。</p>
+</blockquote>
+<p>IP Fragmentation中IPv4 與 IPv6，其封包大小上限，分別為 65535 與 65575 Bytes。
+遠遠超出了data-link的frame大小。</p>
+<h4 id="mtu--maximum-transmission-unit-">MTU ( Maximum Transmission Unit )<a hidden class="anchor" aria-hidden="true" href="#mtu--maximum-transmission-unit-">#</a></h4>
+<p>DEF ➡ data-link中的MTU規範了frame的大小上限。
+乙太網路 (Ethernet) 中的MTU: 1500 個位元組。</p>
+<h3 id="icmp--internet-control-message-protocol-">ICMP ( Internet Control Message Protocol )<a hidden class="anchor" aria-hidden="true" href="#icmp--internet-control-message-protocol-">#</a></h3>
+<p>ping是基於ICMP完成的。它的目的就是讓我們能夠檢測網路的連線狀況，也能確保連線的準確性，不過由於僅是控制訊息的傳遞並無詳細的指導，所以一般而言來源端並不處理該訊息</p>
+<img src="https://i.imgur.com/qEHvBZW.png" style="zoom:50%"/>
+<h3 id="arp--address-resolution-protocol-">ARP ( Address Resolution Protocol )<a hidden class="anchor" aria-hidden="true" href="#arp--address-resolution-protocol-">#</a></h3>
+<p>DEF ➡  已知IP address，求MAC address的protocol，利用「吼」的方式。發送一個broadcast packet，誰是這個IP誰來回答。switch會記住發來請求的sender的mac address，而switch學習到的結果稱為forwarding table(有過期時間)。</p>
+<h3 id="routing-protocol">Routing Protocol<a hidden class="anchor" aria-hidden="true" href="#routing-protocol">#</a></h3>
+<h4 id="rip--routing-information-protocol-">RIP ( Routing Information Protocol )<a hidden class="anchor" aria-hidden="true" href="#rip--routing-information-protocol-">#</a></h4>
+<ol>
+<li>RIP version 2 supports CIDR.</li>
+<li>RIP uses the services of UDP on well-known port 520.</li>
+</ol>
+<h4 id="ospf--open-shortest-path-first-">OSPF ( Open Shortest Path First )<a hidden class="anchor" aria-hidden="true" href="#ospf--open-shortest-path-first-">#</a></h4>
+<p>由於OSPF路由協定的產生，是為了解決RIP路由協定的設備數量的問題，所以OSPF路由協定就沒有設備數量（Hop Count）的限制。會使用LSA的方式與其他路由器設備交換資訊，而不只是Routing Table的更新資訊而已。每一台路由器設備會自行計算屬於自己的「最佳網路路徑」，而這樣的資訊在各個路由器設備之間是不完全相同的。一個LSA封包中包含了介面的資訊、所使用的網路路徑評判標準（Metric）以及其他相關的資訊。當然，關於路徑的選擇，OSPF路由協定是採用最短路徑優先演算法（Shortest Path First Algorithm）。</p>
+<p>每一台路由器設備會自行計算屬於自己的「最佳網路路徑」，而這樣的資訊在各個路由器設備之間是不完全相同的。</p>
+<ol>
+<li>In OSPF, all routers have the same link state database.</li>
+<li>OSPF packets are encapsulated in IP datagrams.</li>
+</ol>
+<blockquote>
+<p>Autonomous System:  由一個單位管理，例如 ISP、超級大學校、大公司等等，什麼都大的組織。每個 AS 裡面的路由表都自己管，隻要事先宣告自己持有什麼網段就行了。</p>
+</blockquote>
+<h4 id="bgp--border-gateway-protocol-">BGP ( Border Gateway Protocol )<a hidden class="anchor" aria-hidden="true" href="#bgp--border-gateway-protocol-">#</a></h4>
+<p>routing among the ISPs ，BGP會自動決定各種狀態下的router，決定東西從哪邊走，該在哪邊停(外部網路下)。
+維護router table來實現AS之間的可達性。</p>
+<p>Simple Network Management Protocol (SNMP ) = 簡單網路管理協定一方面不僅可使用於網路設備之日常維運作業，亦可提供網路維運人員即時監控設備異常事件發生及因應處理。</p>
+<h2 id="其他">其他<a hidden class="anchor" aria-hidden="true" href="#其他">#</a></h2>
+<h3 id="hub集線器">HUB(集線器)<a hidden class="anchor" aria-hidden="true" href="#hub集線器">#</a></h3>
+<p>DEF ➡ 完全在physical layer工作，它會將自己收到的每一個byte，都複製到其他port上去。
+缺: 不管某個介面是否需要，所有的bit都會被發送出去，然後讓主機來判斷是不是需要。</p>
+<p>digital subscriber line (DSL): network line and telephone line to central office DSLAM.
+cable network: 共享頻寬，需要分散式的多重存取協定，用來協調傳輸，避免碰撞。</p>
+<p>大部分packet switch使用store-and-forward transmission (儲存轉送傳輸)，router必須先接收到整個封包，才開始將第一個位元傳輸到外部連結。</p>
+<p>Packet Switching vs Circuit Switching: 網際網路使用此，資源不會被保留(queueing delay loss)/資料會被預約保留
+queueing delay: packet arrival rate to link (temporarily) exceeds output link capacity.</p>
+<img src="https://i.imgur.com/2hU9fet.png" style="zoom:50%" />
+
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="next" href="https://jonathan-tw.github.io/posts/2019-ieee-improving-performance-of-quic-in-wifi-2018-conext-the-quic-fix-for-optimal-video-streaming/">
+    <span class="title">Next »</span>
+    <br>
+    <span>(2019 IEEE) Improving Performance of QUIC in WiFi &amp; (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (課程筆記)(NTUST) Network Communication Protocols on twitter"
+       href="https://twitter.com/intent/tweet/?text=%28%e8%aa%b2%e7%a8%8b%e7%ad%86%e8%a8%98%29%28NTUST%29%20Network%20Communication%20Protocols&amp;url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f%25E8%25AA%25B2%25E7%25A8%258B%25E7%25AD%2586%25E8%25A8%2598ntust-network-communication-protocols%2f&amp;hashtags=NTUST%2c%e8%aa%b2%e7%a8%8b%e7%ad%86%e8%a8%98">
+    <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (課程筆記)(NTUST) Network Communication Protocols on linkedin"
+       href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f%25E8%25AA%25B2%25E7%25A8%258B%25E7%25AD%2586%25E8%25A8%2598ntust-network-communication-protocols%2f&amp;title=%28%e8%aa%b2%e7%a8%8b%e7%ad%86%e8%a8%98%29%28NTUST%29%20Network%20Communication%20Protocols&amp;summary=%28%e8%aa%b2%e7%a8%8b%e7%ad%86%e8%a8%98%29%28NTUST%29%20Network%20Communication%20Protocols&amp;source=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f%25E8%25AA%25B2%25E7%25A8%258B%25E7%25AD%2586%25E8%25A8%2598ntust-network-communication-protocols%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (課程筆記)(NTUST) Network Communication Protocols on reddit"
+       href="https://reddit.com/submit?url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f%25E8%25AA%25B2%25E7%25A8%258B%25E7%25AD%2586%25E8%25A8%2598ntust-network-communication-protocols%2f&title=%28%e8%aa%b2%e7%a8%8b%e7%ad%86%e8%a8%98%29%28NTUST%29%20Network%20Communication%20Protocols">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (課程筆記)(NTUST) Network Communication Protocols on facebook"
+       href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f%25E8%25AA%25B2%25E7%25A8%258B%25E7%25AD%2586%25E8%25A8%2598ntust-network-communication-protocols%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (課程筆記)(NTUST) Network Communication Protocols on whatsapp"
+       href="https://api.whatsapp.com/send?text=%28%e8%aa%b2%e7%a8%8b%e7%ad%86%e8%a8%98%29%28NTUST%29%20Network%20Communication%20Protocols%20-%20https%3a%2f%2fjonathan-tw.github.io%2fposts%2f%25E8%25AA%25B2%25E7%25A8%258B%25E7%25AD%2586%25E8%25A8%2598ntust-network-communication-protocols%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (課程筆記)(NTUST) Network Communication Protocols on telegram"
+       href="https://telegram.me/share/url?text=%28%e8%aa%b2%e7%a8%8b%e7%ad%86%e8%a8%98%29%28NTUST%29%20Network%20Communication%20Protocols&amp;url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f%25E8%25AA%25B2%25E7%25A8%258B%25E7%25AD%2586%25E8%25A8%2598ntust-network-communication-protocols%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        2023-2023
+        <a href="https://jonathan-tw.github.io" style="color:#939393;">Jonathan&#39;s Blog</a>
+        All Rights Reserved
+    </span>
+
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+
+
+    <span id="busuanzi_container">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        Viewers: <span id="busuanzi_value_site_uv"></span>
+        Views: <span id="busuanzi_value_site_pv"></span>
+    </span>
+
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script><script>
+
+  let detail = document.getElementsByClassName('details')
+ 
+  details = [].slice.call(detail);
+ 
+  for (let index = 0; index < details.length; index++) {
+ 
+  let element = details[index]
+ 
+  const summary = element.getElementsByClassName('details-summary')[0];
+ 
+  if (summary) {
+ 
+  summary.addEventListener('click', () => {
+ 
+  element.classList.toggle('open');
+ 
+  }, false);
+ 
+  }
+ 
+  }
+ 
+ </script>
+ 
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「' + "Jonathan's Blog"
+                +'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {
+            }
+            ;
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild === container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    $("code[class^=language] ").on("mouseover", function () {
+        if (this.clientWidth < this.scrollWidth) {
+            $(this).css("width", "135%")
+        }
+    }).on("mouseout", function () {
+        $(this).css("width", "100%")
+    })
+</script>
+</body>
+
+</html>
