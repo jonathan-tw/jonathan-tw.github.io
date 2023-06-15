@@ -6,22 +6,31 @@
     <description>Recent content in quic on Jonathan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 13 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jonathan-tw.github.io/tags/quic/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 15 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jonathan-tw.github.io/tags/quic/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>(2017 NOSSDAV Paper) Not so QUIC A Performance Study of DASH over QUIC</title>
-      <link>https://jonathan-tw.github.io/posts/2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic/</link>
+      <title>(2019 IEEE) Improving Performance of QUIC in WiFi &amp; (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming</title>
+      <link>https://jonathan-tw.github.io/posts/2019-ieee-improving-performance-of-quic-in-wifi-2018-conext-the-quic-fix-for-optimal-video-streaming/</link>
+      <pubDate>Thu, 15 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jonathan-tw.github.io/posts/2019-ieee-improving-performance-of-quic-in-wifi-2018-conext-the-quic-fix-for-optimal-video-streaming/</guid>
+      <description>Improving Performance of QUIC in WiFi Problem Domain WiFi (wireless) Solution 由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC) 1. reducing ACK frequency. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK 2. disabling packet pacing. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates. Evaluation QUIC: detection algorithm利用ACK及RTT進行d</description>
+    </item>
+    
+    <item>
+      <title>(2017 NOSSDAV) Not so QUIC A Performance Study of DASH over QUIC</title>
+      <link>https://jonathan-tw.github.io/posts/2017-nossdav-not-so-quic-a-performance-study-of-dash-over-quic/</link>
       <pubDate>Tue, 13 Jun 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://jonathan-tw.github.io/posts/2017-nossdav-paper-not-so-quic-a-performance-study-of-dash-over-quic/</guid>
+      <guid>https://jonathan-tw.github.io/posts/2017-nossdav-not-so-quic-a-performance-study-of-dash-over-quic/</guid>
       <description>Summary QUIC不及TCP在DASH的表現，由於大多數ABR algorighm都經過優化與TCP配合使用，因此沒有充分利用QUIC提供的功能。 Problem statement What is the impact of QUIC on QoE? How should adaptive bitrate streaming be built to leverage the benefits provided by QUIC? Research objectives A Performance Study and future work Methods we studied QoE performance of different DASH quality adaptation algorithms that are either solely based on the playout buffer filling, or on the video segment download rate, or on both. DASH quality adaptation algorithms that are mainly categorized as</description>
     </item>
     
     <item>
-      <title>(2020 IEEE Paper) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques?</title>
-      <link>https://jonathan-tw.github.io/posts/2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques/</link>
+      <title>(2020 IEEE) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques?</title>
+      <link>https://jonathan-tw.github.io/posts/2020-ieee-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques/</link>
       <pubDate>Tue, 13 Jun 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://jonathan-tw.github.io/posts/2020-ieee-paper-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques/</guid>
+      <guid>https://jonathan-tw.github.io/posts/2020-ieee-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques/</guid>
       <description>Summary 在QUIC中，速度快的video stream被比較慢的audio stream給queue住(sharing a single UDP socket buffer)，造成audio request response latency拉長。其上層的DASH計算throughput不考慮response latency，造成實際的throughput跟</description>
     </item>
     

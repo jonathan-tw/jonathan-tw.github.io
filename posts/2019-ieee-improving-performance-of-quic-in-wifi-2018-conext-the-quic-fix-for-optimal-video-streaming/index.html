@@ -5,12 +5,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>2023 軟韌新鮮人 面試時程 | Jonathan&#39;s Blog</title>
+<title>(2019 IEEE) Improving Performance of QUIC in WiFi &amp; (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming | Jonathan&#39;s Blog</title>
 <meta name="keywords" content="">
-<meta name="description" content="Ref 代碼隨想錄 TSMC &amp; IC Design House(M,R,P)考古 Leetcode Blind 75 CodeTop Leetcode C&#43;&#43; Solutions Behavior questions 為什麼想來我們公司？ 你在xx有什麼特別的貢獻？ (xx = 實習公司) 在你過去工作經驗或求學過程中，你認為最大的困難/挑戰是?為什麼？ 在你過去工作經驗或求學過程中，你認為最大的成就/果是?為什麼？ 你人生遇到最挫折的事情？你怎">
+<meta name="description" content="Improving Performance of QUIC in WiFi Problem Domain WiFi (wireless) Solution 由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC) 1. reducing ACK frequency. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK 2. disabling packet pacing. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates. Evaluation QUIC: detection algorithm利用ACK及RTT進行d">
 <meta name="author" content="
 Author:&nbsp;Jonathan">
-<link rel="canonical" href="https://jonathan-tw.github.io/posts/2023-%E8%BB%9F%E9%9F%8C%E6%96%B0%E9%AE%AE%E4%BA%BA-%E9%9D%A2%E8%A9%A6%E6%99%82%E7%A8%8B/">
+<link rel="canonical" href="https://jonathan-tw.github.io/posts/2019-ieee-improving-performance-of-quic-in-wifi-2018-conext-the-quic-fix-for-optimal-video-streaming/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.c68298aa5045798fc8b25f8a2882169222cb63a98774faa68088de5b1d7b2bfb.css" integrity="sha256-xoKYqlBFeY/Isl&#43;KKIIWkiLLY6mHdPqmgIjeWx17K/s=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
         onload="hljs.initHighlightingOnLoad();"></script>
@@ -67,18 +67,18 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-<meta property="og:title" content="2023 軟韌新鮮人 面試時程" />
-<meta property="og:description" content="Ref 代碼隨想錄 TSMC &amp; IC Design House(M,R,P)考古 Leetcode Blind 75 CodeTop Leetcode C&#43;&#43; Solutions Behavior questions 為什麼想來我們公司？ 你在xx有什麼特別的貢獻？ (xx = 實習公司) 在你過去工作經驗或求學過程中，你認為最大的困難/挑戰是?為什麼？ 在你過去工作經驗或求學過程中，你認為最大的成就/果是?為什麼？ 你人生遇到最挫折的事情？你怎" />
+<meta property="og:title" content="(2019 IEEE) Improving Performance of QUIC in WiFi &amp; (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming" />
+<meta property="og:description" content="Improving Performance of QUIC in WiFi Problem Domain WiFi (wireless) Solution 由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC) 1. reducing ACK frequency. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK 2. disabling packet pacing. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates. Evaluation QUIC: detection algorithm利用ACK及RTT進行d" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://jonathan-tw.github.io/posts/2023-%E8%BB%9F%E9%9F%8C%E6%96%B0%E9%AE%AE%E4%BA%BA-%E9%9D%A2%E8%A9%A6%E6%99%82%E7%A8%8B/" />
-<meta property="og:image" content="https://i.imgur.com/Bp13Xa4.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-06-13T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-06-14T00:00:00+00:00" />
+<meta property="og:url" content="https://jonathan-tw.github.io/posts/2019-ieee-improving-performance-of-quic-in-wifi-2018-conext-the-quic-fix-for-optimal-video-streaming/" />
+<meta property="og:image" content="https://i.imgur.com/hgG8Fy8.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-06-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-06-15T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://i.imgur.com/Bp13Xa4.png" />
-<meta name="twitter:title" content="2023 軟韌新鮮人 面試時程"/>
-<meta name="twitter:description" content="Ref 代碼隨想錄 TSMC &amp; IC Design House(M,R,P)考古 Leetcode Blind 75 CodeTop Leetcode C&#43;&#43; Solutions Behavior questions 為什麼想來我們公司？ 你在xx有什麼特別的貢獻？ (xx = 實習公司) 在你過去工作經驗或求學過程中，你認為最大的困難/挑戰是?為什麼？ 在你過去工作經驗或求學過程中，你認為最大的成就/果是?為什麼？ 你人生遇到最挫折的事情？你怎"/>
+<meta name="twitter:image" content="https://i.imgur.com/hgG8Fy8.png" />
+<meta name="twitter:title" content="(2019 IEEE) Improving Performance of QUIC in WiFi &amp; (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming"/>
+<meta name="twitter:description" content="Improving Performance of QUIC in WiFi Problem Domain WiFi (wireless) Solution 由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC) 1. reducing ACK frequency. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK 2. disabling packet pacing. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates. Evaluation QUIC: detection algorithm利用ACK及RTT進行d"/>
 
 
 <script type="application/ld+json">
@@ -96,8 +96,8 @@ var _hmt = _hmt || [];
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "2023 軟韌新鮮人 面試時程",
-      "item": "https://jonathan-tw.github.io/posts/2023-%E8%BB%9F%E9%9F%8C%E6%96%B0%E9%AE%AE%E4%BA%BA-%E9%9D%A2%E8%A9%A6%E6%99%82%E7%A8%8B/"
+      "name": "(2019 IEEE) Improving Performance of QUIC in WiFi \u0026 (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming",
+      "item": "https://jonathan-tw.github.io/posts/2019-ieee-improving-performance-of-quic-in-wifi-2018-conext-the-quic-fix-for-optimal-video-streaming/"
     }
   ]
 }
@@ -106,24 +106,24 @@ var _hmt = _hmt || [];
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "2023 軟韌新鮮人 面試時程",
-  "name": "2023 軟韌新鮮人 面試時程",
-  "description": "Ref 代碼隨想錄 TSMC \u0026amp; IC Design House(M,R,P)考古 Leetcode Blind 75 CodeTop Leetcode C++ Solutions Behavior questions 為什麼想來我們公司？ 你在xx有什麼特別的貢獻？ (xx = 實習公司) 在你過去工作經驗或求學過程中，你認為最大的困難/挑戰是?為什麼？ 在你過去工作經驗或求學過程中，你認為最大的成就/果是?為什麼？ 你人生遇到最挫折的事情？你怎",
+  "headline": "(2019 IEEE) Improving Performance of QUIC in WiFi \u0026 (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming",
+  "name": "(2019 IEEE) Improving Performance of QUIC in WiFi \u0026 (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming",
+  "description": "Improving Performance of QUIC in WiFi Problem Domain WiFi (wireless) Solution 由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC) 1. reducing ACK frequency. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK 2. disabling packet pacing. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates. Evaluation QUIC: detection algorithm利用ACK及RTT進行d",
   "keywords": [
     ""
   ],
-  "articleBody": "Ref 代碼隨想錄 TSMC \u0026 IC Design House(M,R,P)考古 Leetcode Blind 75 CodeTop Leetcode C++ Solutions Behavior questions 為什麼想來我們公司？ 你在xx有什麼特別的貢獻？ (xx = 實習公司) 在你過去工作經驗或求學過程中，你認為最大的困難/挑戰是?為什麼？ 在你過去工作經驗或求學過程中，你認為最大的成就/果是?為什麼？ 你人生遇到最挫折的事情？你怎麼克服？ 說說你的優點和缺點，並舉例說明。 未來的職業生涯目標是什麼？ 最看重工作的哪三個點？ 對於我們公司還有這個職缺你了解多少？ 為什麼我要錄取你？ 公司 廣達 - OpenBMC BU9 Team\n一面 D+0: 一對多面試，一開始為25分鐘C測驗含一題link list白板題。接下來自我介紹及論文介紹，目前openBMC蠻多大外商都在做，能練到的即戰力。 D+5 口頭offer get。 鴻海(鴻運科) - 通訊軟韌體研發工程師\n一面 D+0: 自我介紹及論文介紹，主管針對論文提出不少問題，也從問題中發現一些有趣的finding。像是不同transport protocol如何進行通訊，eg: server tcp, cliemt quic. D+3 口頭offer get。 台積 - IT BSID SCPM\n預面 3題hackerrank測驗1.5小 D+0: 難度EMM，一題bfs/dfs變形(1254. Number of Closed Islands)，一題弓箭射氣球變形(452. Minimum Number of Arrows to Burst Balloons)。最後一題有5個測資TLE，2.8題。 一面 D+0: 主管面試，自我介紹及論文介紹，主管針對部門的工作內容進行詳細的介紹。主管說這部門算是B部壓力比較大的，但學得到東西，不太需要oncall。 二面 D+7: 主管面試，技術面試(javascript, 基本coding)。這部分覺得當天答得不太好。 三面 D+14: 人資面試 到場測驗 D+15: 人格測驗 口頭offer get D+28: 核薪 offer get D+42: 因為簽約金的問題，所以多花了一些時間與HR商討(台積只有預聘有簽約金，it又有30w，可惜)。\n台達電 - 電動車充電樁\n一面 D+0: 與一位主管和一位同事進行面試，喜歡主管整體待人處事的氛圍。 D+7: HR核薪，原本以為會跟廣達差不多，結果比想像中高不少。台達電是系統場霸主應該是真的。 offer get D+7: 電動車市場現在很火，各個廠商磨拳擦掌在追spec，所以高工時高流動率在所難免。\nLenovo - CSP Firmware Engineer\n一面 D+0: 與兩位同事進行面試，前半自我介紹，後面考C，不難。 二面 D+5: 與兩位主管進行面試，一位來自「北京」的主管印象深刻(友善國人)，他比起台灣聯想的主管問了更多「技術」問題，特別是OS。由於一些技術名詞在兩岸用法上不太一樣，所以要再三確定問題。當天傍晚HR核薪。 offer get D+5: 台灣聯想招募效率很好，面試過程不拖泥帶水。主管說台灣聯想收購了之前的IBM，所以蠻多從IBM那跳來的人，整體公司管理風格與美商相近。因為算外商，一、二面試時都有叫我英文口說，當時沒準備，自己覺得講蠻爛的，但主管與同事都偏向正面回饋，不會刁難。\nMOXA(404) - WiFi application Engineer\n一面 D+0: 整體面試過程中主管態度友好，蠻香的系統廠。開發產品的週期較長，相對開發品質與效率也較好。一個禮拜有兩天可以WFH，「準時」下班，公司不鼓勵加班文化。 二面 coding測驗 D+4: 5題25分鐘，基本上都考C的觀念，問輸入輸出及一題recursive。 D+7: 收到實體面試通知，但已收到其他家的offer，故婉拒後續面試。 威旭資訊 - Infra Team Software Engineer\n預面 D+0: 一題程式題hw，難度easy-medium之間。 D+6: 收到技術實體面試通知，但已收到其他家的offer，故婉拒後續面試。 ",
-  "wordCount" : "1336",
+  "articleBody": "Improving Performance of QUIC in WiFi Problem Domain WiFi (wireless)\nSolution 由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC) 1. reducing ACK frequency. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK 2. disabling packet pacing. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates.\nEvaluation QUIC: detection algorithm利用ACK及RTT進行detect。使用packet pacing時，會降低aggregation，導致packet delay增加被detect到( minimum delay \u003e threshold ) QUIC從slow-start提早離開。 BQUIC: 不使用packet pacing，inter packet time降低。\nBQUIC increases the throughput between 20% to 30%\nFindings 從pacing機制上進行改良，解決文中slow-start較早退出的問題。 動態改善packet pacing: 在掉包率小的環境進行frame aggregation，在掉包大的環境使用原本QUIC。ieda: 依據下層網路環境的不同，而有彈性的使用不同的pacing機制。\nThe QUIC Fix for Optimal Video Streaming Problem Domain DASH (media in H.264)\nSolution reliable on I-Frame + unreliable on B/P-Frame，B/P-Frame參考I-Frame對其進行增量or差異的encoding，丟了I-Frame，其他B/P-Frame也沒用了。 unreliable data: - QUIC handshake to negotiate support for unreliable streams - replace retransmission of missed data with new data - provide a meta stream within QUIC to tag individual QUIC frames as reliable or unreliable. non-trivial challenge: synchronization of the streams: FEC on unreliable data Evaluation bufRatio = re-buffering time / total video time\nrateBuf = frequency of re-buffering events to / total video frame\naSSIM: 改善沒有考量latency的測量方式，晚到的frame會delay，考量了其stall對frame影響的綜合評估 The rateBuf values for both ClipStream and ClipStreamFEC are very close to 0%:\n真正要reliable的packet number變很少 (approx. 1% by count or 12% by size) of the overall video stream reliably\nFindings 從econder/decoder上進行( gpu RGG\u003c–\u003eYUV )，降低解碼CPU占用率。\nan out-of-order packet is inserted into the byte-stream within re-order buffer unless the data has already been consumed by the application. If the application tries to consume “missing” byte-ranges the byte-stream is filled with zeros.\nQ: (Sync) How will the receiver combine the frames from the different streams into the appropriate order in the playback buffer?\nA: add a reliable control stream to signal multiplexing and demultiplexing information for diff sterams, The control stream helps the client to re-assemble the video file (reliably transfer end-of-stream )\nQUICsilver: Optimising QUIC for use with Real-Time Multimedia Traffic (University of Glasgow 2019) Problem Domain RTP (media in H.264)\nSolution 提出playback deadline的概念，在retransmit之前，確定內容的有效性(有沒有用)，有助於於減少發送不要的data。 server predicts that the packet will reach the client in time to be useful for video playback . implementing partial reliability within QUIC can assist with reducing latencies and playback delays\nFindings 在QUIC中加入Meda-awareness\n",
+  "wordCount" : "926",
   "inLanguage": "en",
-  "image":"https://i.imgur.com/Bp13Xa4.png","datePublished": "2023-06-13T00:00:00Z",
-  "dateModified": "2023-06-14T00:00:00Z",
+  "image":"https://i.imgur.com/hgG8Fy8.png","datePublished": "2023-06-15T00:00:00Z",
+  "dateModified": "2023-06-15T00:00:00Z",
   "author":{
     "@type": "Person",
     "name": "Jonathan"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://jonathan-tw.github.io/posts/2023-%E8%BB%9F%E9%9F%8C%E6%96%B0%E9%AE%AE%E4%BA%BA-%E9%9D%A2%E8%A9%A6%E6%99%82%E7%A8%8B/"
+    "@id": "https://jonathan-tw.github.io/posts/2019-ieee-improving-performance-of-quic-in-wifi-2018-conext-the-quic-fix-for-optimal-video-streaming/"
   },
   "publisher": {
     "@type": "Organization",
@@ -220,15 +220,16 @@ var _hmt = _hmt || [];
         <header class="post-header">
             <div class="breadcrumbs"><a href="https://jonathan-tw.github.io">Home</a>&nbsp;»&nbsp;<a href="https://jonathan-tw.github.io/posts/">📚 Posts</a></div>
             <h1 class="post-title">
-                2023 軟韌新鮮人 面試時程
+                (2019 IEEE) Improving Performance of QUIC in WiFi &amp; (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming
             </h1>
-            <div class="post-meta">Created:&nbsp;<span title='2023-06-13 00:00:00 +0000 UTC'>2023-06-13</span>&nbsp;|&nbsp;Upated:&nbsp;2023-06-14&nbsp;|&nbsp;Count words:&nbsp;1336&nbsp;|&nbsp;Reading time:&nbsp;3 mins
+            <div class="post-meta">Created:&nbsp;<span title='2023-06-15 00:00:00 +0000 UTC'>2023-06-15</span>&nbsp;|&nbsp;Upated:&nbsp;2023-06-15&nbsp;|&nbsp;Count words:&nbsp;926&nbsp;|&nbsp;Reading time:&nbsp;2 mins
 
 
 
                 &nbsp;|&nbsp;Tags: &nbsp;
                 <ul class="post-tags-meta">
-                    <a href="https://jonathan-tw.github.io/tags/interview/">interview</a>
+                    <a href="https://jonathan-tw.github.io/tags/paper/">paper</a>
+                    <a href="https://jonathan-tw.github.io/tags/quic/">、quic</a>
                 </ul>
                 
 
@@ -237,7 +238,7 @@ var _hmt = _hmt || [];
 
 </div>
         </header> 
-<figure class="entry-cover1"><img loading="lazy" src="https://i.imgur.com/Bp13Xa4.png" alt="">
+<figure class="entry-cover1"><img loading="lazy" src="https://i.imgur.com/hgG8Fy8.png" alt="">
         
 </figure>
         <aside id="toc-container" class="toc-container wide">
@@ -249,12 +250,41 @@ var _hmt = _hmt || [];
 
         <div class="inner"><ul>
                 <li>
-                    <a href="#ref" aria-label="Ref">Ref</a></li>
+                    <a href="#improving-performance-of-quic-in-wifi" aria-label="Improving Performance of QUIC in WiFi">Improving Performance of QUIC in WiFi</a><ul>
+                        
                 <li>
-                    <a href="#behavior-questions" aria-label="Behavior questions">Behavior questions</a></li>
+                    <a href="#problem-domain" aria-label="Problem Domain">Problem Domain</a></li>
                 <li>
-                    <a href="#%e5%85%ac%e5%8f%b8" aria-label="公司">公司</a>
+                    <a href="#solution" aria-label="Solution">Solution</a></li>
+                <li>
+                    <a href="#evaluation" aria-label="Evaluation">Evaluation</a></li>
+                <li>
+                    <a href="#findings" aria-label="Findings">Findings</a></li></ul>
                 </li>
+                <li>
+                    <a href="#the-quic-fix-for-optimal-video-streaming" aria-label="The QUIC Fix for Optimal Video Streaming">The QUIC Fix for Optimal Video Streaming</a><ul>
+                        
+                <li>
+                    <a href="#problem-domain-1" aria-label="Problem Domain">Problem Domain</a></li>
+                <li>
+                    <a href="#solution-1" aria-label="Solution">Solution</a></li>
+                <li>
+                    <a href="#evaluation-1" aria-label="Evaluation">Evaluation</a></li>
+                <li>
+                    <a href="#findings-1" aria-label="Findings">Findings</a></li></ul>
+                </li>
+                <li>
+                    <a href="#quicsilver-optimising-quic-for-use-with-real-time-multimedia-traffic-university-of-_glasgow_-2019" aria-label="QUICsilver: Optimising QUIC for use with Real-Time Multimedia Traffic (University of Glasgow 2019)">QUICsilver: Optimising QUIC for use with Real-Time Multimedia Traffic (University of <em>Glasgow</em> 2019)</a><ul>
+                        
+                <li>
+                    <a href="#problem-domain-2" aria-label="Problem Domain">Problem Domain</a></li>
+                <li>
+                    <a href="#solution-2" aria-label="Solution">Solution</a></li>
+                <li>
+                    <a href="#findings-2" aria-label="Findings">Findings</a>
+                </li>
+            </ul>
+            </li>
             </ul>
         </div>
         </details>
@@ -320,71 +350,58 @@ var _hmt = _hmt || [];
     }
 </script>
         
-        <div class="post-content"><h2 id="ref">Ref<a hidden class="anchor" aria-hidden="true" href="#ref">#</a></h2>
+        <div class="post-content"><h1 id="improving-performance-of-quic-in-wifi">Improving Performance of QUIC in WiFi<a hidden class="anchor" aria-hidden="true" href="#improving-performance-of-quic-in-wifi">#</a></h1>
+<h2 id="problem-domain">Problem Domain<a hidden class="anchor" aria-hidden="true" href="#problem-domain">#</a></h2>
+<p>WiFi (wireless)</p>
+<h2 id="solution">Solution<a hidden class="anchor" aria-hidden="true" href="#solution">#</a></h2>
+<p>由於802.11 frame aggregation有助於改善throughput，所以讓QUIC增加traffic burstiness(BQUIC) 1. <strong>reducing ACK frequency</strong>. In GQUIC ACK_DECIMATION mode, 至少收到100 packets才回傳ACK 2. <strong>disabling packet pacing</strong>. packet pacing aims to reduce sending bursts of packet, it may hinder performance in high-speed networks with low loss rates.</p>
+<h2 id="evaluation">Evaluation<a hidden class="anchor" aria-hidden="true" href="#evaluation">#</a></h2>
+<p><img loading="lazy" src="https://i.imgur.com/LRLmT2o.png" alt="image-20210706165336998"  />
+<strong>QUIC</strong>: detection algorithm利用ACK及RTT進行detect。使用packet pacing時，會降低aggregation，導致packet delay增加被detect到( minimum delay &gt; threshold ) QUIC從slow-start提早離開。 <strong>BQUIC</strong>: 不使用packet pacing，inter packet time降低。</p>
+<p><img src="https://i.imgur.com/gAZFInp.png" alt="image-20210706175022250" style="zoom:50%;" /><img src="https://i.imgur.com/x1pVOxc.png" alt="image-20210706192532314" style="zoom: 61%;" /></p>
+<p>BQUIC increases the throughput between 20% to 30%</p>
+<h2 id="findings">Findings<a hidden class="anchor" aria-hidden="true" href="#findings">#</a></h2>
+<p>從pacing機制上進行改良，解決文中slow-start較早退出的問題。
+動態改善packet pacing: 在掉包率小的環境進行frame aggregation，在掉包大的環境使用原本QUIC。ieda: 依據下層網路環境的不同，而有彈性的使用不同的pacing機制。</p>
+<h1 id="the-quic-fix-for-optimal-video-streaming">The QUIC Fix for Optimal Video Streaming<a hidden class="anchor" aria-hidden="true" href="#the-quic-fix-for-optimal-video-streaming">#</a></h1>
+<h2 id="problem-domain-1">Problem Domain<a hidden class="anchor" aria-hidden="true" href="#problem-domain-1">#</a></h2>
+<p>DASH (media in H.264)</p>
+<h2 id="solution-1">Solution<a hidden class="anchor" aria-hidden="true" href="#solution-1">#</a></h2>
 <ol>
-<li><a href="https://programmercarl.com/">代碼隨想錄</a></li>
-<li><a href="https://tinyurl.com/23xn7x27">TSMC &amp; IC Design House(M,R,P)考古</a></li>
-<li><a href="https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions">Leetcode Blind 75</a></li>
-<li><a href="https://codetop.cc/home">CodeTop</a></li>
-<li><a href="https://walkccc.me/LeetCode/">Leetcode C++ Solutions</a></li>
+<li>reliable on I-Frame + unreliable on B/P-Frame，B/P-Frame參考I-Frame對其進行增量or差異的encoding，丟了I-Frame，其他B/P-Frame也沒用了。 <strong>unreliable data</strong>: - QUIC handshake to negotiate support for unreliable streams - replace retransmission of missed data with new data - provide a meta stream within QUIC to tag individual QUIC frames as reliable or unreliable.
+<strong>non-trivial challenge: synchronization of the streams</strong>:</li>
+<li>FEC on unreliable data</li>
 </ol>
-<h2 id="behavior-questions">Behavior questions<a hidden class="anchor" aria-hidden="true" href="#behavior-questions">#</a></h2>
+<h2 id="evaluation-1">Evaluation<a hidden class="anchor" aria-hidden="true" href="#evaluation-1">#</a></h2>
+<p><img src="https://i.imgur.com/oz1rpNz.png" alt="image-20210707134806539" style="zoom:100%;" />bufRatio = re-buffering time / total video time</p>
+<p>rateBuf = frequency of re-buffering events to / total video frame</p>
+<p>aSSIM: 改善沒有考量latency的測量方式，晚到的frame會delay，考量了其stall對frame影響的綜合評估 The rateBuf values for both ClipStream and ClipStreamFEC are very close to 0%:</p>
+<p>真正要reliable的packet number變很少 (approx. 1% by count or 12% by size) of the overall video stream reliably</p>
+<h2 id="findings-1">Findings<a hidden class="anchor" aria-hidden="true" href="#findings-1">#</a></h2>
+<p>從econder/decoder上進行( gpu RGG&lt;&ndash;&gt;YUV )，降低解碼CPU占用率。</p>
+<blockquote>
+<p>an out-of-order packet is inserted into the byte-stream within re-order buffer unless the data has already been consumed by the application. If the application tries to consume &ldquo;missing&rdquo; byte-ranges the byte-stream is filled with zeros.</p>
+</blockquote>
+<ul>
+<li>
+<p>Q: (Sync) How will the receiver <strong>combine the frames from the different streams into the appropriate order</strong> in the playback buffer?</p>
+<p>A: add a reliable control stream to signal multiplexing and demultiplexing information for diff sterams, The control stream helps the client to re-assemble the video file (reliably transfer end-of-stream )</p>
+</li>
+</ul>
+<h1 id="quicsilver-optimising-quic-for-use-with-real-time-multimedia-traffic-university-of-_glasgow_-2019">QUICsilver: Optimising QUIC for use with Real-Time Multimedia Traffic (University of <em>Glasgow</em> 2019)<a hidden class="anchor" aria-hidden="true" href="#quicsilver-optimising-quic-for-use-with-real-time-multimedia-traffic-university-of-_glasgow_-2019">#</a></h1>
+<h2 id="problem-domain-2">Problem Domain<a hidden class="anchor" aria-hidden="true" href="#problem-domain-2">#</a></h2>
+<p>RTP (media in H.264)</p>
+<h2 id="solution-2">Solution<a hidden class="anchor" aria-hidden="true" href="#solution-2">#</a></h2>
 <ol>
-<li>為什麼想來我們公司？</li>
-<li>你在xx有什麼特別的貢獻？ (xx = 實習公司)</li>
-<li>在你過去工作經驗或求學過程中，你認為最大的困難/挑戰是?為什麼？</li>
-<li>在你過去工作經驗或求學過程中，你認為最大的成就/果是?為什麼？</li>
-<li>你人生遇到最挫折的事情？你怎麼克服？</li>
-<li>說說你的優點和缺點，並舉例說明。</li>
-<li>未來的職業生涯目標是什麼？</li>
-<li>最看重工作的哪三個點？</li>
-<li>對於我們公司還有這個職缺你了解多少？</li>
-<li>為什麼我要錄取你？</li>
+<li>提出playback deadline的概念，在retransmit之前，確定內容的有效性(有沒有用)，有助於於減少發送不要的data。
+<strong>server predicts that the packet will reach the client in time to be useful for video playback</strong> .
+<blockquote>
+<p>implementing partial reliability within QUIC can assist with reducing latencies and playback delays</p>
+</blockquote>
+</li>
 </ol>
-<h2 id="公司">公司<a hidden class="anchor" aria-hidden="true" href="#公司">#</a></h2>
-<p>廣達 - OpenBMC BU9 Team</p>
-<ul>
-<li>一面 D+0: 一對多面試，一開始為25分鐘C測驗含一題link list白板題。接下來自我介紹及論文介紹，目前openBMC蠻多大外商都在做，能練到的即戰力。</li>
-<li>D+5 口頭offer get。</li>
-</ul>
-<p>鴻海(鴻運科) - 通訊軟韌體研發工程師</p>
-<ul>
-<li>一面 D+0: 自我介紹及論文介紹，主管針對論文提出不少問題，也從問題中發現一些有趣的finding。像是不同transport protocol如何進行通訊，eg: server tcp, cliemt quic.</li>
-<li>D+3 口頭offer get。</li>
-</ul>
-<p>台積 - IT BSID SCPM</p>
-<ul>
-<li>預面 3題hackerrank測驗1.5小 D+0: 難度EMM，一題bfs/dfs變形(1254. Number of Closed Islands)，一題弓箭射氣球變形(452. Minimum Number of Arrows to Burst Balloons)。最後一題有5個測資TLE，2.8題。</li>
-<li>一面 D+0: 主管面試，自我介紹及論文介紹，主管針對部門的工作內容進行詳細的介紹。主管說這部門算是B部壓力比較大的，但學得到東西，不太需要oncall。</li>
-<li>二面 D+7: 主管面試，技術面試(javascript, 基本coding)。這部分覺得當天答得不太好。</li>
-<li>三面 D+14: 人資面試</li>
-<li>到場測驗 D+15: 人格測驗</li>
-<li>口頭offer get D+28: 核薪</li>
-</ul>
-<p>offer get D+42: 因為簽約金的問題，所以多花了一些時間與HR商討(台積只有預聘有簽約金，it又有30w，可惜)。</p>
-<p>台達電 - 電動車充電樁</p>
-<ul>
-<li>一面 D+0: 與一位主管和一位同事進行面試，喜歡主管整體待人處事的氛圍。</li>
-<li>D+7: HR核薪，原本以為會跟廣達差不多，結果比想像中高不少。台達電是系統場霸主應該是真的。</li>
-</ul>
-<p>offer get D+7: 電動車市場現在很火，各個廠商磨拳擦掌在追spec，所以高工時高流動率在所難免。</p>
-<p>Lenovo - CSP Firmware Engineer</p>
-<ul>
-<li>一面 D+0: 與兩位同事進行面試，前半自我介紹，後面考C，不難。</li>
-<li>二面 D+5: 與兩位主管進行面試，一位來自「北京」的主管印象深刻(友善國人)，他比起台灣聯想的主管問了更多「技術」問題，特別是OS。由於一些技術名詞在兩岸用法上不太一樣，所以要再三確定問題。當天傍晚HR核薪。</li>
-</ul>
-<p>offer get D+5: 台灣聯想招募效率很好，面試過程不拖泥帶水。主管說台灣聯想收購了之前的IBM，所以蠻多從IBM那跳來的人，整體公司管理風格與美商相近。因為算外商，一、二面試時都有叫我英文口說，當時沒準備，自己覺得講蠻爛的，但主管與同事都偏向正面回饋，不會刁難。</p>
-<p>MOXA(404) - WiFi application Engineer</p>
-<ul>
-<li>一面 D+0: 整體面試過程中主管態度友好，蠻香的系統廠。開發產品的週期較長，相對開發品質與效率也較好。一個禮拜有兩天可以WFH，「準時」下班，公司不鼓勵加班文化。</li>
-<li>二面 coding測驗 D+4: 5題25分鐘，基本上都考C的觀念，問輸入輸出及一題recursive。</li>
-<li>D+7: 收到實體面試通知，但已收到其他家的offer，故婉拒後續面試。</li>
-</ul>
-<p>威旭資訊 - Infra Team Software Engineer</p>
-<ul>
-<li>預面 D+0: 一題程式題hw，難度easy-medium之間。</li>
-<li>D+6: 收到技術實體面試通知，但已收到其他家的offer，故婉拒後續面試。</li>
-</ul>
+<h2 id="findings-2">Findings<a hidden class="anchor" aria-hidden="true" href="#findings-2">#</a></h2>
+<p>在QUIC中加入Meda-awareness</p>
 
 
         </div>
@@ -392,57 +409,52 @@ var _hmt = _hmt || [];
         <footer class="post-footer">
             
 <nav class="paginav">
-  <a class="prev" href="https://jonathan-tw.github.io/posts/2020-ieee-does-quic-suit-well-with-modern-adaptive-bitrate-streaming-techniques/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>(2020 IEEE) Does QUIC Suit Well With Modern Adaptive Bitrate Streaming Techniques?</span>
-  </a>
-  <a class="next" href="https://jonathan-tw.github.io/posts/c_c&#43;&#43;-%E9%9D%A2%E8%A9%A6%E7%A7%98%E7%AC%88/">
+  <a class="next" href="https://jonathan-tw.github.io/posts/2017-nossdav-not-so-quic-a-performance-study-of-dash-over-quic/">
     <span class="title">Next »</span>
     <br>
-    <span>C/C&#43;&#43; 面試題</span>
+    <span>(2017 NOSSDAV) Not so QUIC A Performance Study of DASH over QUIC</span>
   </a>
 </nav>
 
 
 <div class="share-buttons">
-    <a target="_blank" rel="noopener noreferrer" aria-label="share 2023 軟韌新鮮人 面試時程 on twitter"
-       href="https://twitter.com/intent/tweet/?text=2023%20%e8%bb%9f%e9%9f%8c%e6%96%b0%e9%ae%ae%e4%ba%ba%20%e9%9d%a2%e8%a9%a6%e6%99%82%e7%a8%8b&amp;url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2023-%25E8%25BB%259F%25E9%259F%258C%25E6%2596%25B0%25E9%25AE%25AE%25E4%25BA%25BA-%25E9%259D%25A2%25E8%25A9%25A6%25E6%2599%2582%25E7%25A8%258B%2f&amp;hashtags=interview">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (2019 IEEE) Improving Performance of QUIC in WiFi &amp; (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming on twitter"
+       href="https://twitter.com/intent/tweet/?text=%282019%20IEEE%29%20Improving%20Performance%20of%20QUIC%20in%20WiFi%20%26%20%282018%20CoNEXT%29%20The%20QUIC%20Fix%20for%20Optimal%20Video%20Streaming&amp;url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2019-ieee-improving-performance-of-quic-in-wifi-2018-conext-the-quic-fix-for-optimal-video-streaming%2f&amp;hashtags=paper%2cquic">
     <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
         </svg>
     </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share 2023 軟韌新鮮人 面試時程 on linkedin"
-       href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2023-%25E8%25BB%259F%25E9%259F%258C%25E6%2596%25B0%25E9%25AE%25AE%25E4%25BA%25BA-%25E9%259D%25A2%25E8%25A9%25A6%25E6%2599%2582%25E7%25A8%258B%2f&amp;title=2023%20%e8%bb%9f%e9%9f%8c%e6%96%b0%e9%ae%ae%e4%ba%ba%20%e9%9d%a2%e8%a9%a6%e6%99%82%e7%a8%8b&amp;summary=2023%20%e8%bb%9f%e9%9f%8c%e6%96%b0%e9%ae%ae%e4%ba%ba%20%e9%9d%a2%e8%a9%a6%e6%99%82%e7%a8%8b&amp;source=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2023-%25E8%25BB%259F%25E9%259F%258C%25E6%2596%25B0%25E9%25AE%25AE%25E4%25BA%25BA-%25E9%259D%25A2%25E8%25A9%25A6%25E6%2599%2582%25E7%25A8%258B%2f">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (2019 IEEE) Improving Performance of QUIC in WiFi &amp; (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming on linkedin"
+       href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2019-ieee-improving-performance-of-quic-in-wifi-2018-conext-the-quic-fix-for-optimal-video-streaming%2f&amp;title=%282019%20IEEE%29%20Improving%20Performance%20of%20QUIC%20in%20WiFi%20%26%20%282018%20CoNEXT%29%20The%20QUIC%20Fix%20for%20Optimal%20Video%20Streaming&amp;summary=%282019%20IEEE%29%20Improving%20Performance%20of%20QUIC%20in%20WiFi%20%26%20%282018%20CoNEXT%29%20The%20QUIC%20Fix%20for%20Optimal%20Video%20Streaming&amp;source=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2019-ieee-improving-performance-of-quic-in-wifi-2018-conext-the-quic-fix-for-optimal-video-streaming%2f">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
         </svg>
     </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share 2023 軟韌新鮮人 面試時程 on reddit"
-       href="https://reddit.com/submit?url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2023-%25E8%25BB%259F%25E9%259F%258C%25E6%2596%25B0%25E9%25AE%25AE%25E4%25BA%25BA-%25E9%259D%25A2%25E8%25A9%25A6%25E6%2599%2582%25E7%25A8%258B%2f&title=2023%20%e8%bb%9f%e9%9f%8c%e6%96%b0%e9%ae%ae%e4%ba%ba%20%e9%9d%a2%e8%a9%a6%e6%99%82%e7%a8%8b">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (2019 IEEE) Improving Performance of QUIC in WiFi &amp; (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming on reddit"
+       href="https://reddit.com/submit?url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2019-ieee-improving-performance-of-quic-in-wifi-2018-conext-the-quic-fix-for-optimal-video-streaming%2f&title=%282019%20IEEE%29%20Improving%20Performance%20of%20QUIC%20in%20WiFi%20%26%20%282018%20CoNEXT%29%20The%20QUIC%20Fix%20for%20Optimal%20Video%20Streaming">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
         </svg>
     </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share 2023 軟韌新鮮人 面試時程 on facebook"
-       href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2023-%25E8%25BB%259F%25E9%259F%258C%25E6%2596%25B0%25E9%25AE%25AE%25E4%25BA%25BA-%25E9%259D%25A2%25E8%25A9%25A6%25E6%2599%2582%25E7%25A8%258B%2f">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (2019 IEEE) Improving Performance of QUIC in WiFi &amp; (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming on facebook"
+       href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2019-ieee-improving-performance-of-quic-in-wifi-2018-conext-the-quic-fix-for-optimal-video-streaming%2f">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
         </svg>
     </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share 2023 軟韌新鮮人 面試時程 on whatsapp"
-       href="https://api.whatsapp.com/send?text=2023%20%e8%bb%9f%e9%9f%8c%e6%96%b0%e9%ae%ae%e4%ba%ba%20%e9%9d%a2%e8%a9%a6%e6%99%82%e7%a8%8b%20-%20https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2023-%25E8%25BB%259F%25E9%259F%258C%25E6%2596%25B0%25E9%25AE%25AE%25E4%25BA%25BA-%25E9%259D%25A2%25E8%25A9%25A6%25E6%2599%2582%25E7%25A8%258B%2f">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (2019 IEEE) Improving Performance of QUIC in WiFi &amp; (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming on whatsapp"
+       href="https://api.whatsapp.com/send?text=%282019%20IEEE%29%20Improving%20Performance%20of%20QUIC%20in%20WiFi%20%26%20%282018%20CoNEXT%29%20The%20QUIC%20Fix%20for%20Optimal%20Video%20Streaming%20-%20https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2019-ieee-improving-performance-of-quic-in-wifi-2018-conext-the-quic-fix-for-optimal-video-streaming%2f">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
         </svg>
     </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share 2023 軟韌新鮮人 面試時程 on telegram"
-       href="https://telegram.me/share/url?text=2023%20%e8%bb%9f%e9%9f%8c%e6%96%b0%e9%ae%ae%e4%ba%ba%20%e9%9d%a2%e8%a9%a6%e6%99%82%e7%a8%8b&amp;url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2023-%25E8%25BB%259F%25E9%259F%258C%25E6%2596%25B0%25E9%25AE%25AE%25E4%25BA%25BA-%25E9%259D%25A2%25E8%25A9%25A6%25E6%2599%2582%25E7%25A8%258B%2f">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share (2019 IEEE) Improving Performance of QUIC in WiFi &amp; (2018 CoNEXT) The QUIC Fix for Optimal Video Streaming on telegram"
+       href="https://telegram.me/share/url?text=%282019%20IEEE%29%20Improving%20Performance%20of%20QUIC%20in%20WiFi%20%26%20%282018%20CoNEXT%29%20The%20QUIC%20Fix%20for%20Optimal%20Video%20Streaming&amp;url=https%3a%2f%2fjonathan-tw.github.io%2fposts%2f2019-ieee-improving-performance-of-quic-in-wifi-2018-conext-the-quic-fix-for-optimal-video-streaming%2f">
         <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
             <path
                     d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
