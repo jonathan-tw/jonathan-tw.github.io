@@ -6,7 +6,16 @@
     <description>Recent content in NTUST on Jonathan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 15 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jonathan-tw.github.io/tags/ntust/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jonathan-tw.github.io/tags/ntust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(課程筆記)(NTUST) Information Retrieval</title>
+      <link>https://jonathan-tw.github.io/posts/%E8%AA%B2%E7%A8%8B%E7%AD%86%E8%A8%98ntust-information-retrieval/</link>
+      <pubDate>Mon, 19 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jonathan-tw.github.io/posts/%E8%AA%B2%E7%A8%8B%E7%AD%86%E8%A8%98ntust-information-retrieval/</guid>
+      <description>HW1 - Vector Space Model TF、IDF計算方式: 一開始會讀取document的資料前處理，先去做一些normalized，讓lexicon不要有重複的term，而為了讓程式能在1分鐘內跑完，lexicon使用c++的unordered_map下去存，unordered_map使用hash func</description>
+    </item>
+    
     <item>
       <title>(課程筆記)(NTUST) Network Communication Protocols</title>
       <link>https://jonathan-tw.github.io/posts/%E8%AA%B2%E7%A8%8B%E7%AD%86%E8%A8%98ntust-network-communication-protocols/</link>
